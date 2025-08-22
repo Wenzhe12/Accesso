@@ -1,0 +1,157 @@
+:root {
+    --soft-gray: #f7f7f8;
+    --ink: #222;
+    --muted: #6c757d;
+    --brand: #0d6efd;
+}
+
+body {
+    background: #fff;
+    color: var(--ink)
+}
+
+.page-wrap {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: 24px
+}
+
+.card-shadow {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+    border: 0
+}
+
+/* wireframe sections */
+.bundle-box {
+    background: var(--soft-gray);
+    border: 2px solid #e5e7eb;
+    border-radius: 12px
+}
+
+.totals hr {
+    border-style: dashed;
+    opacity: .6
+}
+
+.qty-input {
+    max-width: 80px;
+    text-align: center;
+    background: #f8f9fa;
+}
+
+/* Quantity controls */
+.qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 2px;
+}
+
+.qty-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #ffffff;
+    color: #495057;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.qty-btn:hover {
+    background: #e9ecef;
+    color: #212529;
+}
+
+.qty-btn:active {
+    transform: scale(0.95);
+}
+
+.qty-display {
+    min-width: 40px;
+    text-align: center;
+    font-weight: 600;
+    color: #212529;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+/* image placeholder style */
+.img-ph {
+    background: linear-gradient(135deg, #e9ecef 25%, #f8f9fa 25%, #f8f9fa 50%, #e9ecef 50%, #e9ecef 75%, #f8f9fa 75%);
+    background-size: 24px 24px;
+    border: 1px solid #dee2e6
+}
+
+/* make bundle box a right-side column on desktop (like your second wireframe) */
+@media (min-width: 992px) {
+    .cart-grid {
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        gap: 28px
+    }
+
+    .bundle-sticky {
+        position: sticky;
+        top: 20px
+    }
+}
+
+/* Additional API integration styles */
+.api-loading {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+}
+
+.bundle-item {
+    transition: transform 0.2s ease;
+}
+
+.bundle-item:hover {
+    transform: translateY(-2px);
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    min-width: 300px;
+}
+
+/* Sticky footer styles */
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
