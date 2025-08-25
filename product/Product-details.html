@@ -167,79 +167,80 @@
 
         const params = new URLSearchParams(window.location.search);
         const productId = params.get("id");
-        const products =
-        {
+        
+        // Expanded products object to include all products from the listing page
+        const products = {
             "Bunny": {
                 name: "Bunny With Plaid",
                 price: "RM 200.00",
                 img: "../img/BunnyWithPlaid.png",
                 description: "A cute bunny with a plaid design, perfect as a gift."
             },
-            "Bobo":{
+            "Bobo": {
                 name: "Big Bobo",
                 price: "RM 200.00",
-                img:"../img/BigBobo.png",
+                img: "../img/BigBobo.png",
                 description: "A large huggable plush with a charming smile that makes the best cuddle buddy."
             },
-            "NiceDay":{
-                name:"Whosming-NiceDay",
+            "NiceDay": {
+                name: "Whosming-NiceDay",
                 price: "RM 200.00",
                 img: "../img/Whosming-NiceDay.png",
                 description: "A cheerful plush toy designed to brighten up your day with positive vibes."
             },
-            "Daisy":{
-                name:"Daisy By Katie-s Collective",
+            "Daisy": {
+                name: "Daisy By Katie's Collective",
                 price: "RM 250.00",
                 img: "../img/DaisyByKatie-s Collective.png",
-                description:"A floral-themed collectible plush with delicate daisy details."
+                description: "A floral-themed collectible plush with delicate daisy details."
             },
-            "YogaCat":{
-                name:"Yoga Cat",
+            "YogaCat": {
+                name: "Yoga Cat",
                 price: "RM 230.00",
                 img: "../img/YogaCat.png",
-                description:"A quirky plush cat striking yoga poses, bringing fun and relaxation vibes."
+                description: "A quirky plush cat striking yoga poses, bringing fun and relaxation vibes."
             },
-            "Retro":{
+            "Retro": {
                 name: "Camera Case-Retro",
                 price: "RM 200.00",
                 img: "../img/CameraCase-Retro.png",
-                description:"A vintage-style protective camera case for retro lovers."
+                description: "A vintage-style protective camera case for retro lovers."
             },
-            "Lottery":{
-                name:"I Wanna Win Lottery",
-                price:"RM 200.00",
-                img:"../img/WinLottery.png",
-                description:"A playful plush figure inspired by the dream of hitting the jackpot."
+            "Lottery": {
+                name: "I Wanna Win Lottery",
+                price: "RM 200.00",
+                img: "../img/WinLottery.png",
+                description: "A playful plush figure inspired by the dream of hitting the jackpot."
             },
-            "Coffee":{
-                name:"Whosming-Good Coffee",
-                price:"RM 200.00",
-                img:"../img/whosming-goodCoffee.png",
-                description:"A cozy plush that captures the warmth of a fresh cup of coffee, perfect for coffee lovers."
+            "Coffee": {
+                name: "Whosming-Good Coffee",
+                price: "RM 200.00",
+                img: "../img/Whosming-goodCoffee.png",
+                description: "A cozy plush that captures the warmth of a fresh cup of coffee, perfect for coffee lovers."
             },
-            "PartyCat":{
-                name:"Party Cat",
-                price:"RM 200.00",
-                img:"../img/PartyCat.png",
-                description:"A lively cat plush dressed for celebration, full of party spirit."
+            "PartyCat": {
+                name: "Party Cat",
+                price: "RM 200.00",
+                img: "../img/PartyCat.png",
+                description: "A lively cat plush dressed for celebration, full of party spirit."
             },
-            "Periwinkle":{
-                name:"Ripple Case-Periwinkle",
-                price:"RM 200.00",
-                img:"../img/RippleCase-Periwinkle.png",
-                description:"A sleek periwinkle phone case with a ripple texture for extra grip."
+            "Periwinkle": {
+                name: "Ripple Case-Periwinkle",
+                price: "RM 200.00",
+                img: "../img/RippleCase-Periwinkle.png",
+                description: "A sleek periwinkle phone case with a ripple texture for extra grip."
             },
-            "Oat":{
-                name:"RippleCase-Oat",
-                price:"RM 200.00",
-                img:"../img/RippleCase-Oat.png",
-                description:"A minimalist oat-colored phone case with a soft ripple finish."
+            "Oat": {
+                name: "Ripple Case-Oat",
+                price: "RM 200.00",
+                img: "../img/RippleCase-Oat.png",
+                description: "A minimalist oat-colored phone case with a soft ripple finish."
             },
-            "Strawberry":{
-                name:"Strawberry Plaid",
-                price:"RM 180.00",
-                img:"../img/Strawberry Plaid.png",
-                description:"A sweet strawberry-themed plush with a plaid accent."
+            "Strawberry": {
+                name: "Strawberry Plaid",
+                price: "RM 180.00",
+                img: "../img/Strawberry Plaid.png",
+                description: "A sweet strawberry-themed plush with a plaid accent."
             },
             "Only":{
                 name:"ONLY",
@@ -259,6 +260,72 @@
                 img:"../img/Monday-.png",
                 description:"A relatable plush reflecting the mood of Monday mornings."
             },
+            "Periwinkle(pod)": {
+                name: "Ripple Case-Periwinkle(AirPods 4)",
+                price: "RM 180.00",
+                img: "../img/RippleCase-Periwinkle(pod).png",
+                description: "Matching AirPods case in ripple periwinkle design."
+            },
+            "Butterfly": {
+                name: "Butterfly Folk(AirPods 4)",
+                price: "RM 180.00",
+                img: "../img/Butterflyfolk.png",
+                description: "A delicate butterfly-inspired AirPods case for a whimsical touch."
+            },
+            "Dainty":{
+                name: "Dainty Flowers(AirPods 4)",
+                price: "RM 180.00",
+                img:"../img/DaintyFlowers.png",
+                description:"A floral-patterned AirPods case for a soft, elegant style."
+            },
+            "Skateboarding":{
+                name:"Skate Boadring(AirPods 4)",
+                price:"RM 180.00",
+                img:"../img/Skateboarding.png",
+                description:"A sporty AirPods case with a skateboarder attitude."
+            },
+             "UltraBounce":{
+                name:"Ultra Bounce Carabiner-Indigo",
+                price:"RM 150.00",
+                img:"../img/UltraBounceCarabiner-Indigo.png",
+                description:"A sturdy indigo carabiner clip for carrying your tech gear."
+            },
+             "HeartOfSteel":{
+                name:"Heart Phone Charm-Heart of Steel",
+                price:"RM 180.00",
+                img:"../img/Heart Phone Charm - Heart of Steel.png",
+                description:"A stylish heart-shaped charm to accessorize your phone."
+            },
+             "Rope":{
+                name:"Rope Wrist Strap-Cabalt Blue (Braided)",
+                price:"RM 180.00",
+                img:"../img/Rope Wrist Strap - Cobalt Blue (Braided).png",
+                description:"A durable braided wrist strap for secure carrying."
+            },
+            "Horoscope":{
+                name:"Horoscope Phone Charm",
+                price:"RM 180.00",
+                img:"../img/Horoscope Phone Charm.png",
+                description:"A personalized charm inspired by zodiac constellations."
+            },
+            "cable":{
+                name:"Cable",
+                price:"RM 99.00",
+                img:"../img/cable.jpeg",
+                description:"A durable charging cable for daily use."
+            },
+            "Magsafe":{
+                name:"Magsafe Charger",
+                price:"RM 99.00",
+                img:"../img/Macsafe Charger.png",
+                description:"A fast wireless charger compatible with MagSafe devices."
+            },
+            "Finewoven":{
+                name:"Finewoven",
+                price:"RM 180.00",
+                img:"../img/Finewoven Wallet.jpeg",
+                description:"A premium woven wallet designed to attach to your MagSafe phone."
+            }
 
         };
         const container = document.getElementById("product-details");

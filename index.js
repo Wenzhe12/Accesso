@@ -34,7 +34,7 @@ setInterval(() => {
 
 // New arrivals rotation
 const newArrivals = [
-    { img: "img/new1.png", link: "Product-details.html?id=PartyCat", desc: "Phone Case – Party Cat" },
+    { img: "img/new1.png", link: "product-details.html?id=PartyCat", desc: "Phone Case – Party Cat" },
     { img: "img/new2.png", link: "Non-CasingDetails.html?id=Skateboarding", desc: "Airpods Case – Skateboarding" },
     { img: "img/new3.png", link: "Non-CasingDetails.html?id=HeartOfSteel", desc: "Phone Charm – Heart of Steel" },
     { img: "img/new4.jpeg", link: "Non-CasingDetails.html?id=Finewoven", desc: "Accessories – Finewoven Wallet" }
