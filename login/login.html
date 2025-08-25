@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Phone Accessories Store</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #f2f2f2;
+            --text-color: #333;
+            --primary-color: #007bff;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #f2f2f2;
+            --primary-color: #1e90ff;
+        }
+
+        .login-container {
+            position: relative;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        body.dark-mode .login-container {
+            background-color: #1e1e1e;
+        }
+
+        .switch {
+            position: absolute;
+            top: -40px;
+            left: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+            background-color: #ccc;
+            border-radius: 20px;
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        /* Inline error message */
+        .error-msg {
+            color: red;
+            font-size: 0.875rem;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container" id="login-box">
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider round"></span>
+            <span class="ms-1">Dark Mode</span>
+        </label>
+
+        <span class="close-btn" id="close-btn">&times;</span>
+
+        <div class="text-center mb-3">
+            <h2>Login</h2>
+        </div>
+
+        <form id="loginForm" novalidate>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                <div class="error-msg" id="email-error">Please enter a valid email address.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                <div class="error-msg" id="password-error">Password cannot be empty.</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+
+        <p class="text-center mt-3">
+            Don’t have an account? <a href="signup.html">Sign up here</a>
+        </p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if (sessionStorage.getItem('theme') === 'dark') {
+                $("body").addClass("dark-mode");
+                $("#theme-toggle").prop("checked", true);
+            }
+            $("#theme-toggle").on("change", function () {
+                $("body").toggleClass("dark-mode");
+                if ($("body").hasClass("dark-mode")) {
+                    sessionStorage.setItem("theme", "dark");
+                } else {
+                    sessionStorage.setItem("theme", "light");
+                }
+            });
+
+            $("#close-btn").on("click", function () {
+                window.history.back();
+            });
+
+            // login validation
+            $("#loginForm").on("submit", function (e) {
+                e.preventDefault();
+                let email = $("#email").val().trim();
+                let password = $("#password").val().trim();
+                let valid = true;
+
+                // reset old error messages
+                $(".error-msg").hide();
+
+                // email validation
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    $("#email-error").show();
+                    valid = false;
+                }
+
+                if (password === "") {
+                    $("#password-error").show();
+                    valid = false;
+                }
+
+                if (valid) {
+                    // check session storage for user
+                    let users = JSON.parse(sessionStorage.getItem("users")) || [];
+                    const user = users.find(u => u.email === email && u.password === password);
+
+                    if (user) {
+                        alert("Login successful!");
+                        window.location.href = "../index.html";
+                    } else {
+                        alert("Invalid email or password. Please try again.");
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

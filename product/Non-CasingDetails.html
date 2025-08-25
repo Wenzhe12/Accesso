@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        .product-details {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page" class="site">
+        <header>
+            <div class="header-top">
+                <div class="container">
+                    <div class="wrapper flexitem">
+                        <div class="left">
+                            <ul class="flexitem main-links">
+                                <li>
+                                    <a href="../index.html">
+                                        <img src="Logo.png" width="150" height="65" alt="Logo">
+                                    </a>
+                                </li>
+                                <div class="search-box">
+                                    <form action="search.html" method="GET" class="search">
+                                        <i class="ri-search-line search-icon"></i>
+                                        <input type="search" name="query" placeholder="Search...">
+                                        <button type="submit">Search</button>
+                                    </form>
+                                </div>
+                            </ul>
+                        </div>
+
+                        <div class="right">
+
+                        </div>
+                        <ul class="flexitem main-links">
+                            <div class="flexitem second-links">
+                                <li><a href="#" class="iscart">
+                                        <div class="icon-large">
+                                            <i class="ri-shopping-cart-line"></i>
+                                <li> <a href='#'>SignUp/LogIn</a></li>
+                                <li> <a href='#'>My Acccount</a></li>
+
+                            </div>
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <div class="header-nav">
+        <div class="container">
+            <div class="wrapper flexitem">
+                <a href="#" class="trigger" id="menuToggle"><span class="ri-menu-2-line"></span></a>
+
+                <div class="logo"><a href="/"><span class="circle"></span></a>
+                </div>
+                <nav class="nav-menu" id="navMenu">
+                    <ul class="flexcol second-links">
+                        <li><a href="HomePage.html"><strong>Home </strong></a></li>
+                        <li class="p-submenu">
+
+                            <a href="#" class="submenu-toggle"><strong>Categories: </strong></a>
+                            <ul class="submenu">
+                                <li><a href="HotSeller.html">Hot Seller</a></li>
+                                <li><a href="products.html">Products </a></li>
+                                <li><a href="Accessories.html">Accessories</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../about/about.html"><strong>About Us</strong></a></li>
+
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+    </header>
+
+    <main>
+
+        <div class="product-details-container">
+
+            <div class="details-left" id="product-details">
+
+            </div>
+
+
+            <lable for="quantity">Quantity: </lable>
+            <div class="quantity-control">
+                <button type="button" id="minus">-</button>
+                <input type="number" id="quantity" min="0" value="1">
+                <button type="button" id="plus">+</button>
+            </div>
+
+            <div class="buttons">
+                <button id="cancel">Cancel</button>
+                <button id="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuToggle = document.getElementById("menuToggle");
+            const navMenu = document.getElementById("navMenu");
+
+            menuToggle.addEventListener("click", (e) => {
+                e.preventDefault();
+                navMenu.classList.toggle("active");
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggles = document.querySelectorAll(".submenu-toggle");
+
+            toggles.forEach(toggle => {
+                toggle.addEventListener("click", function () {
+                    const submenu = this.nextElementSibling;
+                    submenu.classList.toggle("active");
+                });
+            });
+        });
+
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get("id");
+        const products =
+        {
+            "Periwinkle(pod)": {
+                name: "Ripple Case-Periwinkle(AirPods 4)",
+                price: "RM 180.00",
+                img: "../img/RippleCase-Periwinkle(pod).png",
+                description: "Matching AirPods case in ripple periwinkle design."
+            },
+            "Butterfly": {
+                name: "Butterfly Folk(AirPods 4)",
+                price: "RM 180.00",
+                img: "../img/Butterflyfolk.png",
+                description: "A delicate butterfly-inspired AirPods case for a whimsical touch."
+            },
+            "Dainty":{
+                name: "Dainty Flowers(AirPods 4)",
+                price: "RM 180.00",
+                img:"../img/DaintyFlowers.png",
+                description:"A floral-patterned AirPods case for a soft, elegant style."
+            },
+            "Skateboarding":{
+                name:"Skate Boadring(AirPods 4)",
+                price:"RM 180.00",
+                img:"../img/Skateboarding.png",
+                description:"A sporty AirPods case with a skateboarder attitude."
+            },
+             "Carabiner":{
+                name:"Ultra Bounce Carabiner-Indigo",
+                price:"RM 150.00",
+                img:"../img/UltraBounceCarabiner-Indigo.png",
+                description:"A sturdy indigo carabiner clip for carrying your tech gear."
+            },
+             "HeartOfSteel":{
+                name:"Heart Phone Charm-Heart of Steel",
+                price:"RM 180.00",
+                img:"../img/Heart Phone Charm - Heart of Steel.png",
+                description:"A stylish heart-shaped charm to accessorize your phone."
+            },
+             "Rope":{
+                name:"Rope Wrist Strap-Cabalt Blue (Braided)",
+                price:"RM 180.00",
+                img:"../img/Rope Wrist Strap - Cobalt Blue (Braided).png",
+                description:"A durable braided wrist strap for secure carrying."
+            },
+            "Horoscope":{
+                name:"Horoscope Phone Charm",
+                price:"RM 180.00",
+                img:"../img/Horoscope Phone Charm.png",
+                description:"A personalized charm inspired by zodiac constellations."
+            },
+            "cable":{
+                name:"Cable",
+                price:"RM 99.00",
+                img:"../img/cable.jpeg",
+                description:"A durable charging cable for daily use."
+            },
+            "Magsafe":{
+                name:"Magsafe Charger",
+                price:"RM 99.00",
+                img:"../img/Macsafe Charger.png",
+                description:"A fast wireless charger compatible with MagSafe devices."
+            },
+            "Finewoven":{
+                name:"Finewoven",
+                price:"RM 180.00",
+                img:"../img/Finewoven Wallet.jpeg",
+                description:"A premium woven wallet designed to attach to your MagSafe phone."
+            }
+
+        };
+        const container = document.getElementById("product-details");
+        if (products[productId]) {
+            const p = products[productId];
+            container.innerHTML = `
+        <h1>${p.name}</h1>
+        <img src="${p.img}" alt="${p.name}">
+        <p><strong>${p.price}</strong></p>
+        <p>${p.description}</p>
+      `;
+        } else {
+            container.innerHTML = "<p>Product not found.</p>";
+        }
+
+
+
+
+        document.getElementById("cancel").addEventListener("click", function () {
+            window.history.back();
+        });
+
+        document.getElementById("add-to-cart").addEventListener("click", function () {
+            let qty = document.getElementById("quantity").value;
+            alert(`Added ${qty} item(s) of to cart!`);
+        });
+
+        const minusBtn = document.getElementById("minus");
+        const plusBtn = document.getElementById("plus");
+        const qtyInput = document.getElementById("quantity");
+
+        minusBtn.addEventListener("click", () => {
+            let value = parseInt(qtyInput.value);
+            if (value > 1) {
+                qtyInput.value = value - 1;
+            }
+        });
+
+        plusBtn.addEventListener("click", () => {
+            let value = parseInt(qtyInput.value);
+            qtyInput.value = value + 1;
+        });
+    </script>
+    </body>
+    </html>

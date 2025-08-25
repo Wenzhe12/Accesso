@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        .product-details {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page" class="site">
+        <header>
+            <div class="header-top">
+                <div class="container">
+                    <div class="wrapper flexitem">
+                        <div class="left">
+                            <ul class="flexitem main-links">
+                                <li>
+                                    <a href="../index.html">
+                                        <img src="../img/logo.png" width="150" height="65" alt="Logo">
+                                    </a>
+                                </li>
+                                <div class="search-box">
+                                    <form action="search.html" method="GET" class="search">
+                                        <i class="ri-search-line search-icon"></i>
+                                        <input type="search" name="query" placeholder="Search...">
+                                        <button type="submit">Search</button>
+                                    </form>
+                                </div>
+                            </ul>
+                        </div>
+
+                        <div class="right">
+
+                        </div>
+                        <ul class="flexitem main-links">
+                            <div class="flexitem second-links">
+                                <li><a href="#" class="iscart">
+                                        <div class="icon-large">
+                                            <i class="ri-shopping-cart-line"></i>
+                                <li> <a href='#'>SignUp/LogIn</a></li>
+                                <li> <a href='#'>My Acccount</a></li>
+
+                            </div>
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <div class="header-nav">
+        <div class="container">
+            <div class="wrapper flexitem">
+                <a href="#" class="trigger" id="menuToggle"><span class="ri-menu-2-line"></span></a>
+
+                <div class="logo"><a href="/"><span class="circle"></span></a>
+                </div>
+                <nav class="nav-menu" id="navMenu">
+                    <ul class="flexcol second-links">
+                        <li><a href="HomePage.html"><strong>Home </strong></a></li>
+                        <li class="p-submenu">
+
+                            <a href="#" class="submenu-toggle"><strong>Categories: </strong></a>
+                            <ul class="submenu">
+                                <li><a href="HotSeller.html">Hot Seller</a></li>
+                                <li><a href="products.html">Products </a></li>
+                                <li><a href="Accessories.html">Accessories</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../about/about.html"><strong>About Us</strong></a></li>
+
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+    </header>
+
+    <main>
+
+        <div class="product-details-container">
+
+        <div class="details-left" id="product-details">
+
+        </div>
+
+        <div class="details-right">
+            <lable for="model">Model: </lable>
+            <select id="model">
+                <option value="ipx">IPhone X</option>
+                <option value="ipxs">IPhone XS</option>
+                <option value="ipxsm">IPhone XS Max</option>
+                <option value="ip11">IPhone 11 </option>
+                <option value="ip11p">IPhone 11 Pro</option>
+                <option value="ip11pm">IPhone 11 Pro Max </option>
+                <option value="ip12">IPhone 12 </option>
+                <option value="ip12p">IPhone 12 Pro</option>
+                <option value="ip12pm">IPhone 12 Pro Max </option>
+                <option value="ip13">IPhone 13 </option>
+                <option value="ip13p">IPhone 13 Pro</option>
+                <option value="ip13pm">IPhone 13 Pro Max </option>
+                <option value="ip14">IPhone 14 </option>
+                <option value="ip14p">IPhone 14 Pro</option>
+                <option value="ip14pm">IPhone 14 Pro Max </option>
+                <option value="ip15">IPhone 15 </option>
+                <option value="ip15p">IPhone 15 Pro</option>
+                <option value="ip15pm">IPhone 15 Pro Max </option>
+                <option value="ip16">IPhone 16 </option>
+                <option value="ip16p">IPhone 16 Pro</option>
+                <option value="ip16pm">IPhone 16 Pro Max </option>
+
+            </select>
+
+            <lable for="quantity">Quantity: </lable>
+            <div class="quantity-control">
+                <button type="button" id="minus">-</button>
+                <input type="number" id="quantity" min="0" value="1">
+                <button type="button" id="plus">+</button>
+            </div>
+
+            <div class="buttons">
+                <button id="cancel">Cancel</button>
+                <button id="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuToggle = document.getElementById("menuToggle");
+            const navMenu = document.getElementById("navMenu");
+
+            menuToggle.addEventListener("click", (e) => {
+                e.preventDefault();
+                navMenu.classList.toggle("active");
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggles = document.querySelectorAll(".submenu-toggle");
+
+            toggles.forEach(toggle => {
+                toggle.addEventListener("click", function () {
+                    const submenu = this.nextElementSibling;
+                    submenu.classList.toggle("active");
+                });
+            });
+        });
+
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get("id");
+        const products =
+        {
+            "Bunny": {
+                name: "Bunny With Plaid",
+                price: "RM 200.00",
+                img: "../img/BunnyWithPlaid.png",
+                description: "A cute bunny with a plaid design, perfect as a gift."
+            },
+            "Bobo":{
+                name: "Big Bobo",
+                price: "RM 200.00",
+                img:"../img/BigBobo.png",
+                description: "A large huggable plush with a charming smile that makes the best cuddle buddy."
+            },
+            "NiceDay":{
+                name:"Whosming-NiceDay",
+                price: "RM 200.00",
+                img: "../img/Whosming-NiceDay.png",
+                description: "A cheerful plush toy designed to brighten up your day with positive vibes."
+            },
+            "Daisy":{
+                name:"Daisy By Katie-s Collective",
+                price: "RM 250.00",
+                img: "../img/DaisyByKatie-s Collective.png",
+                description:"A floral-themed collectible plush with delicate daisy details."
+            },
+            "YogaCat":{
+                name:"Yoga Cat",
+                price: "RM 230.00",
+                img: "../img/YogaCat.png",
+                description:"A quirky plush cat striking yoga poses, bringing fun and relaxation vibes."
+            },
+            "Retro":{
+                name: "Camera Case-Retro",
+                price: "RM 200.00",
+                img: "../img/CameraCase-Retro.png",
+                description:"A vintage-style protective camera case for retro lovers."
+            },
+            "Lottery":{
+                name:"I Wanna Win Lottery",
+                price:"RM 200.00",
+                img:"../img/WinLottery.png",
+                description:"A playful plush figure inspired by the dream of hitting the jackpot."
+            },
+            "Coffee":{
+                name:"Whosming-Good Coffee",
+                price:"RM 200.00",
+                img:"../img/whosming-goodCoffee.png",
+                description:"A cozy plush that captures the warmth of a fresh cup of coffee, perfect for coffee lovers."
+            },
+            "PartyCat":{
+                name:"Party Cat",
+                price:"RM 200.00",
+                img:"../img/PartyCat.png",
+                description:"A lively cat plush dressed for celebration, full of party spirit."
+            },
+            "Periwinkle":{
+                name:"Ripple Case-Periwinkle",
+                price:"RM 200.00",
+                img:"../img/RippleCase-Periwinkle.png",
+                description:"A sleek periwinkle phone case with a ripple texture for extra grip."
+            },
+            "Oat":{
+                name:"RippleCase-Oat",
+                price:"RM 200.00",
+                img:"../img/RippleCase-Oat.png",
+                description:"A minimalist oat-colored phone case with a soft ripple finish."
+            },
+            "Strawberry":{
+                name:"Strawberry Plaid",
+                price:"RM 180.00",
+                img:"../img/Strawberry Plaid.png",
+                description:"A sweet strawberry-themed plush with a plaid accent."
+            },
+            "Only":{
+                name:"ONLY",
+                price:"RM 200.00",
+                img:"../img/Only.png",
+                description:"A simple and stylish plush designed with a minimalist aesthetic."
+            },
+            "Heart":{
+                name:"Heart",
+                price:"RM 200.00",
+                img:"../img/Heart.png",
+                description:"A heart-shaped plush symbolizing love and comfort."
+            },
+            "Monday":{
+                name:"Monday-",
+                price:"RM 200.00",
+                img:"../img/Monday-.png",
+                description:"A relatable plush reflecting the mood of Monday mornings."
+            },
+
+        };
+        const container = document.getElementById("product-details");
+        if (products[productId]) {
+            const p = products[productId];
+            container.innerHTML = `
+        <h1>${p.name}</h1>
+        <img src="${p.img}" alt="${p.name}">
+        <p><strong>${p.price}</strong></p>
+        <p>${p.description}</p>
+      `;
+        } else {
+            container.innerHTML = "<p>Product not found.</p>";
+        }
+
+
+
+
+        document.getElementById("cancel").addEventListener("click", function () {
+            window.history.back();
+        });
+
+        document.getElementById("add-to-cart").addEventListener("click", function () {
+            let model = document.getElementById("model").value;
+            let qty = document.getElementById("quantity").value;
+            alert(`Added ${qty} item(s) of ${model} to cart!`);
+        });
+
+        const minusBtn = document.getElementById("minus");
+        const plusBtn = document.getElementById("plus");
+        const qtyInput = document.getElementById("quantity");
+
+        minusBtn.addEventListener("click", () => {
+            let value = parseInt(qtyInput.value);
+            if (value > 1) {
+                qtyInput.value = value - 1;
+            }
+        });
+
+        plusBtn.addEventListener("click", () => {
+            let value = parseInt(qtyInput.value);
+            qtyInput.value = value + 1;
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Phone Accessories Store</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #f2f2f2;
+            --text-color: #333;
+            --primary-color: #007bff;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #f2f2f2;
+            --primary-color: #1e90ff;
+        }
+
+        .signup-container {
+            position: relative;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        body.dark-mode .signup-container {
+            background-color: #1e1e1e;
+        }
+
+        .switch {
+            position: absolute;
+            top: -40px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+            background-color: #ccc;
+            border-radius: 20px;
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .signup-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="signup-container" id="signup-box">
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider round"></span>
+            <span class="ms-1">Dark Mode</span>
+        </label>
+
+        <span class="close-btn" id="close-btn">&times;</span>
+
+        <div class="signup-header">
+            <h2>Sign Up</h2>
+        </div>
+
+        <form id="signupForm" novalidate>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                <div id="email-error" class="text-danger small mt-1" style="display:none;"></div>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                <div id="password-error" class="text-danger small mt-1" style="display:none;"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+        </form>
+
+        <p class="text-center mt-3">
+            Already have an account? <a href="login.html">Login here</a>
+        </p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const toggleInput = document.getElementById('theme-toggle');
+        if (sessionStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            toggleInput.checked = true;
+        }
+        toggleInput.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                sessionStorage.setItem('theme', 'dark');
+            } else {
+                sessionStorage.setItem('theme', 'light');
+            }
+        });
+
+        $('#close-btn').on('click', function () {
+            window.history.back();
+        });
+
+        // signup validation and session storage
+        $('#signupForm').on('submit', function (e) {
+            e.preventDefault();
+            let email = $('#email').val().trim();
+            let password = $('#password').val().trim();
+            let isValid = true;
+
+            // clear old error messages
+            $('#email-error').hide();
+            $('#password-error').hide();
+
+            // email validation
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //xxxx@xxx.xxx
+            if (!emailPattern.test(email)) {
+                $('#email-error').text('Please enter a valid email address.').show();
+                isValid = false;
+            }
+
+            // password length validation
+            if (password.length < 8) {
+                $('#password-error').text('Password must be at least 8 characters long.').show();
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            // check current users from session storage
+            let users = JSON.parse(sessionStorage.getItem('users')) || [];
+
+            // check whether email registed
+            const userExists = users.some(user => user.email === email);
+            if (userExists) {
+                alert("This email is already registered. Please log in instead.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            // save new registration
+            users.push({ email, password });
+            sessionStorage.setItem('users', JSON.stringify(users));
+
+            alert("Sign up successful! You can now log in.");
+            window.location.href = "login.html";
+        });
+    </script>
+
+</body>
+
+</html>

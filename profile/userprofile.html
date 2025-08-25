@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <style>
+    .toggle-transition {
+      transition: all 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+
+  <div class="flex min-h-screen">
+    <aside class="w-64 bg-white dark:bg-gray-800 shadow-lg">
+      <div class="p-6">
+          <div class="w-50 h-20 bg-white flex items-center justify-center rounded-lg shadow-lg">
+            <img src="../img/logo.png" alt="Dashboard Logo" class="w-80 h-40 object-contain">
+          </div>
+          <div class="h-8"></div>
+          <a href="userprofile.html" class="block px-4 py-2 rounded-lg bg-blue-500 text-white">User Profile</a>
+          <a href="editprofile.html" class="block px-4 py-2 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700">Edit Profile</a>
+          <a href="updatepassword.html" class="block px-4 py-2 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700">Update Password</a>
+          <a href="orderhistory.html" class="block px-4 py-2 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700">Order History</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="flex-1 p-8">
+      <div class="flex items-center justify-between mb-6">
+        <h1 class="text-3xl font-bold">User Profile</h1>
+        
+        <button id="toggleDark" 
+                class="relative w-16 h-8 flex items-center bg-gray-300 dark:bg-gray-600 rounded-full p-1 transition-colors duration-300">
+          <div id="toggleCircle" 
+               class="absolute left-1 w-6 h-6 bg-white rounded-full shadow-md toggle-transition flex items-center justify-center">
+            <span id="toggleIcon" class="text-xs">🌙</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+        <div class="flex mb-8">
+          <img src="../img/xavier.png" alt="User Image" 
+               class="w-32 h-32 rounded-full border-4 border-blue-500 shadow-md mr-6">
+          
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+          <div>
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Full Name</p>
+            <p class="text-lg font-semibold text-gray-900 dark:text-white">Xavier</p>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Email Address</p>
+            <p class="text-lg font-semibold text-gray-900 dark:text-white">xavier@gmail.com</p>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Phone Number</p>
+            <p class="text-lg font-semibold text-gray-900 dark:text-white">+60 19-757 6634</p>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Home Address</p>
+            <p class="text-lg font-semibold text-gray-900 dark:text-white">123, Jalan Ampang, Kuala Lumpur, Malaysia</p>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Gender</p>
+            <p class="text-lg font-semibold text-gray-900 dark:text-white">Male</p>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Date of Birth</p>
+            <p class="text-lg font-semibold text-gray-900 dark:text-white">1 April 1980</p>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Account Role</p>
+            <p class="text-lg font-semibold text-gray-900 dark:text-white">Premium User</p>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Join Date</p>
+            <p class="text-lg font-semibold text-gray-900 dark:text-white">January 2023</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('toggleDark');
+    const circle = document.getElementById('toggleCircle');
+    const icon = document.getElementById('toggleIcon');
+
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      circle.style.transform = 'translateX(2rem)';
+      icon.textContent = '🌙';
+    } else {
+      document.documentElement.classList.remove('dark');
+      circle.style.transform = 'translateX(0)';
+      icon.textContent = '☀️';
+    }
+
+    toggle.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      
+      localStorage.theme = isDark ? 'dark' : 'light';
+      
+      if (isDark) {
+        circle.style.transform = 'translateX(2rem)';
+        icon.textContent = '🌙';
+      } else {
+        circle.style.transform = 'translateX(0)';
+        icon.textContent = '☀️';
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+  <style>
+    .toggle-transition { transition: all 0.3s ease-in-out; }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+
+  <div class="flex min-h-screen">
+    <aside class="w-64 bg-white dark:bg-gray-800 shadow-lg">
+      <div class="p-6">
+          <div class="w-50 h-20 bg-white flex items-center justify-center rounded-lg shadow-lg">
+            <img src="../img/logo.png" alt="Dashboard Logo" class="w-80 h-40 object-contain">
+          </div>
+          <div class="h-8"></div>
+          <a href="userprofile.html" class="block px-4 py-2 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700">User Profile</a>
+          <a href="editprofile.html" class="block px-4 py-2 rounded-lg bg-blue-500 text-white">Edit Profile</a>
+          <a href="updatepassword.html" class="block px-4 py-2 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700">Update Password</a>
+          <a href="orderhistory.html" class="block px-4 py-2 rounded-lg hover:bg-blue-100 dark:hover:bg-gray-700">Order History</a>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="flex-1 p-8">
+      <div class="flex items-center justify-between mb-6">
+        <h1 class="text-3xl font-bold">Edit Profile</h1>
+
+        <button id="toggleDark" class="relative w-16 h-8 flex items-center bg-gray-300 dark:bg-gray-600 rounded-full p-1 transition-colors duration-300">
+          <div id="toggleCircle" class="absolute left-1 w-6 h-6 bg-white rounded-full shadow-md toggle-transition flex items-center justify-center">
+            <span id="toggleIcon" class="text-xs">🌙</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+        <div class="flex items-center mb-6">
+        <img src="../img/xavier.png" alt="Profile Picture" class="w-24 h-24 rounded-full object-cover mr-6 border-2 border-gray-300 dark:border-gray-600">
+        <div>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Change Profile Picture</label>
+            <input type="file" accept="image/*" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600">
+        </div>
+        </div>
+        <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400">Full Name</label>
+            <input type="text" value="Xavier" class="w-full mt-1 p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400">Email Address</label>
+            <input type="email" value="xavier@gmail.com" class="w-full mt-1 p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400">Phone Number</label>
+            <input type="text" value="+60 19-757 6634" class="w-full mt-1 p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400">Home Address</label>
+            <input type="text" value="123, Jalan Ampang, Kuala Lumpur, Malaysia" class="w-full mt-1 p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400">Gender</label>
+            <select class="w-full mt-1 p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600">
+              <option selected>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-600 dark:text-gray-400">Date of Birth</label>
+            <input type="date" value="1980-04-01" class="w-full mt-1 p-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"/>
+          </div>
+        </form>
+        <div class="mt-6">
+          <button class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Save Changes</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('toggleDark');
+    const circle = document.getElementById('toggleCircle');
+    const icon = document.getElementById('toggleIcon');
+
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      circle.style.transform = 'translateX(2rem)';
+      icon.textContent = '🌙';
+    } else {
+      document.documentElement.classList.remove('dark');
+      circle.style.transform = 'translateX(0)';
+      icon.textContent = '☀️';
+    }
+
+    toggle.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.theme = isDark ? 'dark' : 'light';
+      circle.style.transform = isDark ? 'translateX(2rem)' : 'translateX(0)';
+      icon.textContent = isDark ? '🌙' : '☀️';
+    });
+  </script>
+
+</body>
+</html>

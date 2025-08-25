@@ -164,7 +164,7 @@ function saveCart(list){
   // Also save cart summary in sessionStorage
   const subtotal = list.reduce((s,i)=>s + i.price*i.qty, 0);
   // Always recalculate shipping based on current subtotal
-  const shipping = subtotal >= 120 ? 0 : 7;
+  const shipping = subtotal >= 250 ? 0 : 7;
   const summary = {
     itemCount: list.length,
     totalQty: list.reduce((sum, item) => sum + item.qty, 0),
@@ -252,7 +252,7 @@ function calcTotals(){
   let shipping = 0;
   if (cart.length > 0 && selectedItems.length > 0) {
     // Always recalculate shipping based on current subtotal
-    shipping = subtotal >= 120 ? 0 : 7;
+    shipping = subtotal >= 250 ? 0 : 7;
     // Update cookie with new shipping fee
     setCookie('shippingFee', shipping, 2);
   }
@@ -464,7 +464,7 @@ $('#checkoutBtn').on('click', function(){
   // compute preview & store in sessionStorage (rubric: sessionStorage usage)
   const subtotal = selectedItems.reduce((s,i)=>s+i.price*i.qty,0);
   // Always recalculate shipping based on current subtotal
-  const shipping = subtotal >= 120 ? 0 : 7;
+  const shipping = subtotal >= 250 ? 0 : 7;
   const preview = { 
     cart: selectedItems, // Only selected items 
     subtotal, 
