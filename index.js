@@ -19,9 +19,9 @@ setInterval(() => {
 
 // Promo rotation
 const promoImages = [
-    { src: "../img/promo1.png", alt: "Free gift box packaging for every set of purchase." },
-    { src: "../img/promo2.png", alt: "Free shipping for orders over RM250!" },
-    { src: "../img/promo3.png", alt: "Free 1 screen protector for purchase of 2 cases." }
+    { src: "img/promo1.png", alt: "Free gift box packaging for every set of purchase." },
+    { src: "img/promo2.png", alt: "Free shipping for orders over RM250!" },
+    { src: "img/promo3.png", alt: "Free 1 screen protector for purchase of 2 cases." }
 ];
 
 let promoIndex = 0;
@@ -34,10 +34,10 @@ setInterval(() => {
 
 // New arrivals rotation
 const newArrivals = [
-    { img: "../img/new1.png", link: "Product-details.html?id=PartyCat", desc: "Phone Case – Party Cat" },
-    { img: "../img/new2.png", link: "Non-CasingDetails.html?id=Skateboarding", desc: "Airpods Case – Skateboarding" },
-    { img: "../img/new3.png", link: "Non-CasingDetails.html?id=HeartOfSteel", desc: "Phone Charm – Heart of Steel" },
-    { img: "../img/new4.jpeg", link: "Non-CasingDetails.html?id=Finewoven", desc: "Accessories – Finewoven Wallet" }
+    { img: "img/new1.png", link: "Product-details.html?id=PartyCat", desc: "Phone Case – Party Cat" },
+    { img: "img/new2.png", link: "Non-CasingDetails.html?id=Skateboarding", desc: "Airpods Case – Skateboarding" },
+    { img: "img/new3.png", link: "Non-CasingDetails.html?id=HeartOfSteel", desc: "Phone Charm – Heart of Steel" },
+    { img: "img/new4.jpeg", link: "Non-CasingDetails.html?id=Finewoven", desc: "Accessories – Finewoven Wallet" }
 ];
 
 let arrivalIndex = 0;
