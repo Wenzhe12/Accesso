@@ -1,4 +1,3 @@
-
 const hamburger = document.getElementById('hamburger');
 const menu = document.getElementById('menu');
 const productToggle = document.getElementById('product-toggle');
