@@ -348,7 +348,7 @@ function updateQuantity(itemId, change) {
   const item = cart.find(i => i.id === itemId);
 
   if (item) {
-    const newQty = item.qty + change;
+    const newQty = Number(item.qty) + Number(change);
     if (newQty <= 0) {
       // Remove item if quantity becomes 0 or negative
       const newCart = cart.filter(i => i.id !== itemId);
