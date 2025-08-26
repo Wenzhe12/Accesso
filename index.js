@@ -1,4 +1,3 @@
-
 // Theme Toggle with sessionStorage
 const themeToggle = document.getElementById('themeToggle');
 if (sessionStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
