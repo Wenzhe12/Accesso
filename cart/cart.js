@@ -1,17 +1,11 @@
 const fmt = v => 'RM ' + (Number(v || 0)).toFixed(2);
 
-/* =========================
-   STORAGE KEYS
-========================= */
 const LS_CART_KEY = 'cart:v1';
 const SS_PREVIEW_KEY = 'orderPreview:v1';
 const LS_HISTORY_KEY = 'orderHistory:v1';
 const SS_BUNDLES_KEY = 'bundleDeals:v1';
 const SS_USER_PREFS = 'userPrefs:v1';
 
-/* =========================
-   COOKIE HELPERS (for rubric)
-========================= */
 function setCookie(name, value, days = 7) {
   const d = new Date(); d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
   document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + d.toUTCString() + ";path=/";
@@ -21,23 +15,20 @@ function getCookie(name) {
   return match ? decodeURIComponent(match[2]) : null;
 }
 
-/* =========================
-   DEMO DATA (first visit)
-========================= */
-const demoItem = {
-  id: 'case001',
-  name: 'Shockproof Phone Case',
-  info: 'iPhone / Transparent',
-  price: 39.90,
-  qty: 1,
-  img: 'https://picsum.photos/seed/case/240/160'
-};
+// /* =========================
+//    DEMO DATA (first visit)
+// ========================= */
+// const demoItem = {
+//   id: 'case001',
+//   name: 'Shockproof Phone Case',
+//   info: 'iPhone / Transparent',
+//   price: 39.90,
+//   qty: 1,
+//   img: 'https://picsum.photos/seed/case/240/160'
+// };
 
 let bundleCandidates = [];
 
-/* =========================
-   NOTIFICATION SYSTEM
-========================= */
 function showNotification(message, type = 'info', duration = 3000) {
   const alertClass = {
     success: 'alert-success',
@@ -60,9 +51,7 @@ function showNotification(message, type = 'info', duration = 3000) {
   }, duration);
 }
 
-/* =========================
-   API INTEGRATION (RESTful API with jQuery)
-========================= */
+
 function fetchBundleDeals() {
   $('#bundleLoading').show();
 
@@ -100,7 +89,6 @@ function fetchBundleDeals() {
           name: names[index] || `Bundle ${index + 1}`,
           price: prices[index] || (Math.random() * 50 + 20).toFixed(2),
           img: customImages[index],
-          description: post.title.substring(0, 50) + '...',
           apiSource: true
         };
       });
@@ -142,9 +130,6 @@ function fetchBundleDeals() {
   });
 }
 
-/* =========================
-   CART STATE
-========================= */
 function loadCart() {
   const raw = localStorage.getItem(LS_CART_KEY);
   if (!raw) {
@@ -282,19 +267,16 @@ function addToCart(prod) {
   const cart = loadCart();
   const found = cart.find(i => i.id === prod.id);
   if (found) {
-    found.qty += 1;
+    found.qty = Number(found.qty) + Number(prod.qty);
     showNotification(`Updated quantity for ${prod.name}`, 'info');
   } else {
-    cart.push({ ...prod, qty: 1 });
+    cart.push({ ...prod, qty: prod.qty });
     showNotification(`Added ${prod.name} to cart`, 'success');
   }
   saveCart(cart);
   renderCart();
 }
 
-/* =========================
-   BUNDLE RENDER
-========================= */
 function renderBundles() {
   const $list = $('#bundleList').empty();
 
@@ -518,13 +500,4 @@ $(document).ready(function () {
     notifications: true
   };
   sessionStorage.setItem(SS_USER_PREFS, JSON.stringify(userPrefs));
-});
-
-// Theme Toggle with sessionStorage
-const themeToggle = document.getElementById('themeToggle');
-if (sessionStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-
-themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-  sessionStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
 });

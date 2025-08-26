@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="product-details.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="logo">
+                        <a href="../index.html">
+                            <img src="../img/logo.png" alt="Logo" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 col-md-4 d-none d-md-block"></div>
+                
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="nav-links d-flex justify-content-end align-items-center">
+                        <a href="../cart/cart.html">
+                            <i class="ri-shopping-cart-line cart-icon"></i>
+                        </a>
+                        <a href="#" class="d-none d-lg-inline">SignUp/LogIn</a>
+                        <a href="#" class="d-none d-lg-inline">My Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-custom">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../product/product.html">Products</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Product Details</li>
+                </ol>
+            </nav>
+
+            <!-- Product Details -->
+            <div class="product-details-card">
+                <div class="row g-0">
+                    <!-- Product Image -->
+                    <div class="col-lg-6">
+                        <div class="product-image-container">
+                            <img id="productImage" src="../img/BunnyWithPlaid.png" alt="Product Image" class="product-image">
+                        </div>
+                    </div>
+
+                    <!-- Product Information -->
+                    <div class="col-lg-6">
+                        <div class="product-info">
+                            <h1 id="productName" class="product-title">Bunny With Plaid</h1>
+                            <div id="productPrice" class="product-price">RM 200.00</div>
+                            <p id="productDescription" class="product-description">
+                                Premium quality phone case featuring adorable bunny design with plaid pattern. 
+                                Made from durable materials to protect your device while adding a touch of cuteness to your style.
+                            </p>
+
+                            <!-- Model Selection -->
+                            <div class="form-section">
+                                <label for="model" class="form-label">
+                                    <i class="ri-smartphone-line me-2"></i>Select Model
+                                </label>
+                                <select id="model" class="form-select">
+                                    <option value="ipx">iPhone X</option>
+                                    <option value="ipxs">iPhone XS</option>
+                                    <option value="ipxsm">iPhone XS Max</option>
+                                    <option value="ip11">iPhone 11</option>
+                                    <option value="ip11p">iPhone 11 Pro</option>
+                                    <option value="ip11pm">iPhone 11 Pro Max</option>
+                                    <option value="ip12">iPhone 12</option>
+                                    <option value="ip12p">iPhone 12 Pro</option>
+                                    <option value="ip12pm">iPhone 12 Pro Max</option>
+                                    <option value="ip13">iPhone 13</option>
+                                    <option value="ip13p">iPhone 13 Pro</option>
+                                    <option value="ip13pm">iPhone 13 Pro Max</option>
+                                    <option value="ip14">iPhone 14</option>
+                                    <option value="ip14p">iPhone 14 Pro</option>
+                                    <option value="ip14pm">iPhone 14 Pro Max</option>
+                                    <option value="ip15">iPhone 15</option>
+                                    <option value="ip15p">iPhone 15 Pro</option>
+                                    <option value="ip15pm">iPhone 15 Pro Max</option>
+                                    <option value="ip16">iPhone 16</option>
+                                    <option value="ip16p">iPhone 16 Pro</option>
+                                    <option value="ip16pm">iPhone 16 Pro Max</option>
+                                </select>
+                            </div>
+
+                            <!-- Quantity Selection -->
+                            <div class="form-section">
+                                <label class="form-label">
+                                    <i class="ri-add-line me-2"></i>Quantity
+                                </label>
+                                <div class="quantity-controls">
+                                    <input type="number" id="qty" class="quantity-input form-control" value="1" min="1" max="10">
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="action-buttons">
+                                <button id="addToCart" class="btn btn-custom btn-primary-custom flex-fill">
+                                    <i class="ri-shopping-cart-line me-2"></i>Add to Cart
+                                </button>
+                                <button id="cancelBtn" class="btn btn-custom btn-outline-custom">
+                                    <i class="ri-arrow-left-line me-2"></i>Back
+                                </button>
+                            </div>
+
+                            <!-- Feature Icons -->
+                            <div class="feature-icons">
+                                <div class="feature-item">
+                                    <i class="ri-shield-check-line"></i>
+                                    <span>Premium Quality</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="ri-truck-line"></i>
+                                    <span>Fast Shipping</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="ri-customer-service-2-line"></i>
+                                    <span>24/7 Support</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="ri-secure-payment-line"></i>
+                                    <span>Secure Payment</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="../product-detail/product-details.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../cart/cart.js"></script>
+</body>
+
+</html>
