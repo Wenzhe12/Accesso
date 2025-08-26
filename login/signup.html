@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Phone Accessories Store</title>
 
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -167,25 +166,51 @@
             window.history.back();
         });
 
-        // signup validation and session storage
-        $('#signupForm').on('submit', function (e) {
+        // Hash password before storing
+        async function hashPassword(password) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            return hashHex;
+        }
+
+        // Mock API to simulate signup with hashed password
+        async function signupAPI(email, password) {
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Check if email already exists
+            if (users.some(u => u.email === email)) {
+                throw "This email is already registered. Please log in instead.";
+            }
+
+            const hashedPassword = await hashPassword(password);
+
+            // Add new user
+            users.push({ email, password: hashedPassword });
+            localStorage.setItem('users', JSON.stringify(users));
+            return "Sign up successful! You can now log in.";
+        }
+
+        // Signup validation and API call
+        $('#signupForm').on('submit', async function (e) {
             e.preventDefault();
+
             let email = $('#email').val().trim();
             let password = $('#password').val().trim();
             let isValid = true;
 
-            // clear old error messages
-            $('#email-error').hide();
-            $('#password-error').hide();
+            $('#email-error, #password-error').hide();
 
-            // email validation
-            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //xxxx@xxx.xxx
+            // Email validation
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailPattern.test(email)) {
                 $('#email-error').text('Please enter a valid email address.').show();
                 isValid = false;
             }
 
-            // password length validation
+            // Password length validation
             if (password.length < 8) {
                 $('#password-error').text('Password must be at least 8 characters long.').show();
                 isValid = false;
@@ -193,26 +218,15 @@
 
             if (!isValid) return;
 
-            // check current users from session storage
-            let users = JSON.parse(sessionStorage.getItem('users')) || [];
-
-            // check whether email registed
-            const userExists = users.some(user => user.email === email);
-            if (userExists) {
-                alert("This email is already registered. Please log in instead.");
+            try {
+                const msg = await signupAPI(email, password);
+                alert(msg);
                 window.location.href = "login.html";
-                return;
+            } catch (err) {
+                alert(err);
             }
-
-            // save new registration
-            users.push({ email, password });
-            sessionStorage.setItem('users', JSON.stringify(users));
-
-            alert("Sign up successful! You can now log in.");
-            window.location.href = "login.html";
         });
     </script>
-
 </body>
 
 </html>

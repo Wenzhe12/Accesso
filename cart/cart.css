@@ -2,7 +2,7 @@
     --soft-gray: #f7f7f8;
     --ink: #333;
     --muted: #6c757d;
-    --brand: #CFC1AB; 
+    --brand: #CFC1AB;
     --hero-bg: #b6ad9d;
     --text-dark: #453125;
 }
@@ -14,6 +14,9 @@ body {
     margin: 0;
     padding: 0;
     transition: background 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 body.dark {
@@ -21,14 +24,19 @@ body.dark {
     color: #eee;
 }
 
-/* Cart Header with Logo */
+/* Fixed Cart Header */
 .cart-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+    padding: 20px 24px;
     margin-bottom: 20px;
     border-bottom: 2px solid var(--brand);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .cart-header-left {
@@ -51,13 +59,15 @@ body.dark {
     font-size: 32px;
     color: #333;
     font-weight: bold;
+    margin: 0;
 }
 
 .page-wrap {
     max-width: 1200px;
     margin-inline: auto;
-    padding: 24px;
+    padding: 0 24px;
     transition: background 0.3s;
+    flex: 1;
 }
 
 body.dark .page-wrap {
@@ -330,25 +340,9 @@ body.dark .continue-shopping-header {
     border-color: #555;
 }
 
-/* Sticky footer styles */
-html,
-body {
-    height: 100%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-}
-
-main {
-    flex: 1 0 auto;
-}
-
+/* Fixed Footer styles */
 footer {
-    flex-shrink: 0;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    margin-top: auto;
     width: 100%;
     background-color: var(--brand);
     color: var(--text-dark);
@@ -384,17 +378,26 @@ body.dark footer {
         flex-direction: column;
         text-align: center;
         gap: 10px;
+        padding: 20px 16px;
     }
-    
+
     .cart-title {
         font-size: 28px;
     }
-    
+
     .cart-grid {
         display: block;
     }
-    
+
     .bundle-box {
         margin-top: 20px;
+    }
+
+    .page-wrap {
+        padding: 0 16px;
+    }
+
+    .footer-content {
+        padding: 16px;
     }
 }

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Phone Accessories Store</title>
 
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -103,7 +102,6 @@
             cursor: pointer;
         }
 
-        /* Inline error message */
         .error-msg {
             color: red;
             font-size: 0.875rem;
@@ -171,44 +169,53 @@
                 window.history.back();
             });
 
-            // login validation
-            $("#loginForm").on("submit", function (e) {
+            // Hash password
+            async function hashPassword(password) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(password);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+
+            $("#loginForm").on("submit", async function (e) {
                 e.preventDefault();
                 let email = $("#email").val().trim();
                 let password = $("#password").val().trim();
                 let valid = true;
 
-                // reset old error messages
                 $(".error-msg").hide();
 
-                // email validation
                 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailPattern.test(email)) {
                     $("#email-error").show();
                     valid = false;
                 }
-
-                if (password === "") {
+                if (!password) {
                     $("#password-error").show();
                     valid = false;
                 }
+                if (!valid) return;
 
-                if (valid) {
-                    // check session storage for user
-                    let users = JSON.parse(sessionStorage.getItem("users")) || [];
-                    const user = users.find(u => u.email === email && u.password === password);
+                // Read stored users from local storage
+                let users = JSON.parse(localStorage.getItem("users")) || [];
 
-                    if (user) {
-                        alert("Login successful!");
-                        window.location.href = "../index.html";
-                    } else {
-                        alert("Invalid email or password. Please try again.");
-                    }
+                // Hash input password
+                const hashedPassword = await hashPassword(password);
+
+                // Find user
+                const user = users.find(u => u.email === email && u.password === hashedPassword);
+
+                if (user) {
+                    // Save session info
+                    sessionStorage.setItem("loggedInUser", JSON.stringify({ email: user.email }));
+                    alert("Login successful!");
+                    window.location.href = "index.html";
+                } else {
+                    alert("Invalid email or password. Please try again.");
                 }
             });
         });
     </script>
-
 </body>
-
 </html>
