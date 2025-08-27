@@ -18,7 +18,8 @@ function getCookie(name) {
 
 // Check if user is logged in
 function isLoggedIn() {
-    return getCookie('loggedInUser') !== null;
+  const user = localStorage.getItem('loggedInUser');
+  return user !== null && user !== '';
 }
 
 // Login protection - redirect to index if not logged in
