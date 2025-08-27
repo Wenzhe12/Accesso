@@ -273,12 +273,13 @@ document.getElementById("cancelBtn").addEventListener("click", function () {
     window.history.back();
 });
 
-// UPDATED: Add to Cart with Login Check
-document.getElementById("addToCart").addEventListener("click", function () {
+// FIXED: Add to Cart with Login Check - Removed showNotification call
+document.getElementById("addToCart").addEventListener("click", function (e) {
     // Check if user is logged in first
     if (!isLoggedIn()) {
+        e.preventDefault();
         showLoginModal();
-        return; // Stop execution if not logged in
+        return; // Exit the function to prevent further execution
     }
 
     // If user is logged in, proceed with adding to cart
@@ -298,6 +299,7 @@ document.getElementById("addToCart").addEventListener("click", function () {
         model: model,
         img: p.img,
     };
+    
     addToCart(cartItem);
     alert(`Added ${qty} item(s) of ${model} to cart!`);
 

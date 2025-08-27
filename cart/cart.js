@@ -484,9 +484,12 @@ $('#checkoutBtn').on('click', function () {
 $(document).ready(function () {
   console.log('Cart page initialized');
 
-  // Check login access first - redirect if not logged in
-  if (!checkLoginAccess()) {
-    return; // Stop execution if user is not logged in
+  // Only check login access if we're actually on the cart page
+  if (window.location.pathname.includes('/cart/')) {
+    // Check login access first - redirect if not logged in
+    if (!checkLoginAccess()) {
+      return; // Stop execution if user is not logged in
+    }
   }
 
   // Initialize social plugins
