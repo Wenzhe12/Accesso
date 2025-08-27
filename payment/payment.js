@@ -4,6 +4,31 @@ const LS_CART_KEY = 'cart:v1';
 const LS_HISTORY_KEY = 'orderHistory:v1';
 
 /* =========================
+   COOKIE UTILITIES
+========================= */
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? decodeURIComponent(match[2]) : null;
+}
+
+// Check if user is logged in
+function isLoggedIn() {
+  return getCookie('loggedInUser') !== null;
+}
+
+// Login protection - redirect to index if not logged in
+function checkLoginAccess() {
+  if (!isLoggedIn()) {
+    showNotification('Please log in to access the payment page', 'warning', 2000);
+    setTimeout(() => {
+      window.location.href = '../index.html';
+    }, 2000);
+    return false;
+  }
+  return true;
+}
+
+/* =========================
    NOTIFICATION SYSTEM
 ========================= */
 function showNotification(message, type = 'info', duration = 3000) {
@@ -139,6 +164,15 @@ $('.pay-method').on('change', function () {
 $('#payForm').on('submit', function (e) {
   e.preventDefault();
 
+  // Double-check login status before processing payment
+  if (!isLoggedIn()) {
+    showNotification('Session expired. Please log in again.', 'error');
+    setTimeout(() => {
+      window.location.href = '../index.html';
+    }, 2000);
+    return;
+  }
+
   // Validation
   if (!preview || !preview.cart || preview.cart.length === 0) {
     showNotification('Your cart is empty.', 'error');
@@ -240,6 +274,11 @@ function processPayment() {
 /* Initialize page */
 $(document).ready(function () {
   console.log('Payment page initialized');
+
+  // Check login access first - redirect if not logged in
+  if (!checkLoginAccess()) {
+    return; // Stop execution if user is not logged in
+  }
 
   // Render order summary
   renderSummary();

@@ -7,12 +7,109 @@ document.addEventListener("DOMContentLoaded", function () {
             submenu.classList.toggle("active");
         });
     });
+
+    // Initialize login modal functionality
+    initializeLoginModal();
 });
+
+// Cookie functions
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+// Check if user is logged in
+function isLoggedIn() {
+    return getCookie('loggedInUser') !== null;
+}
+
+// Modal functions
+function showLoginModal() {
+    const modal = document.getElementById('loginModal');
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function hideLoginModal() {
+    const modal = document.getElementById('loginModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = 'auto'; // Restore scrolling
+}
+
+function initializeLoginModal() {
+    const cartLink = document.getElementById('cart-link');
+    const profileLink = document.getElementById('profile-link');
+    const modal = document.getElementById('loginModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalCancel = document.getElementById('modalCancel');
+    const modalLogin = document.getElementById('modalLogin');
+
+    // Cart link click handler
+    if (cartLink) {
+        cartLink.addEventListener('click', function(e) {
+            if (!isLoggedIn()) {
+                e.preventDefault(); // Prevent navigation
+                showLoginModal();
+            }
+            // If logged in, allow normal navigation to cart/cart.html
+        });
+    }
+
+    // Profile link click handler
+    if (profileLink) {
+        profileLink.addEventListener('click', function(e) {
+            if (!isLoggedIn()) {
+                e.preventDefault(); // Prevent navigation
+                showLoginModal();
+            }
+            // If logged in, allow normal navigation to profile/userprofile.html
+        });
+    }
+
+    // Modal close handlers
+    if (modalClose) {
+        modalClose.addEventListener('click', hideLoginModal);
+    }
+    
+    if (modalCancel) {
+        modalCancel.addEventListener('click', hideLoginModal);
+    }
+
+    // Login button handler
+    if (modalLogin) {
+        modalLogin.addEventListener('click', function() {
+            // Redirect to login page
+            window.location.href = '../login/login.html';
+        });
+    }
+
+    // Close modal when clicking outside of it
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                hideLoginModal();
+            }
+        });
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal && modal.classList.contains('show')) {
+            hideLoginModal();
+        }
+    });
+}
 
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
 
-// Expanded products object to include all products from the listing page
+// Products object (you'll need to add this from your original code)
 const products = {
     "Bunny": {
         name: "Bunny With Plaid",
@@ -170,14 +267,21 @@ const products = {
         img: "../img/Finewoven Wallet.jpeg",
         description: "A premium woven wallet designed to attach to your MagSafe phone."
     }
-
 };
 
 document.getElementById("cancelBtn").addEventListener("click", function () {
     window.history.back();
 });
 
+// UPDATED: Add to Cart with Login Check
 document.getElementById("addToCart").addEventListener("click", function () {
+    // Check if user is logged in first
+    if (!isLoggedIn()) {
+        showLoginModal();
+        return; // Stop execution if not logged in
+    }
+
+    // If user is logged in, proceed with adding to cart
     let model = document.getElementById("model").value;
     let qty = document.getElementById("qty").value;
 
@@ -231,4 +335,3 @@ function loadProduct() {
 }
 
 window.onload = loadProduct;
-

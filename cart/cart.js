@@ -10,22 +10,28 @@ function setCookie(name, value, days = 7) {
   const d = new Date(); d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
   document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + d.toUTCString() + ";path=/";
 }
+
 function getCookie(name) {
   const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
   return match ? decodeURIComponent(match[2]) : null;
 }
 
-// /* =========================
-//    DEMO DATA (first visit)
-// ========================= */
-// const demoItem = {
-//   id: 'case001',
-//   name: 'Shockproof Phone Case',
-//   info: 'iPhone / Transparent',
-//   price: 39.90,
-//   qty: 1,
-//   img: 'https://picsum.photos/seed/case/240/160'
-// };
+// Check if user is logged in
+function isLoggedIn() {
+    return getCookie('loggedInUser') !== null;
+}
+
+// Login protection - redirect to index if not logged in
+function checkLoginAccess() {
+  if (!isLoggedIn()) {
+    showNotification('Please log in to access your cart', 'warning', 2000);
+    setTimeout(() => {
+      window.location.href = '../index.html';
+    }, 2000);
+    return false;
+  }
+  return true;
+}
 
 let bundleCandidates = [];
 
@@ -50,7 +56,6 @@ function showNotification(message, type = 'info', duration = 3000) {
     notification.fadeOut(() => notification.remove());
   }, duration);
 }
-
 
 function fetchBundleDeals() {
   $('#bundleLoading').show();
@@ -133,9 +138,8 @@ function fetchBundleDeals() {
 function loadCart() {
   const raw = localStorage.getItem(LS_CART_KEY);
   if (!raw) {
-    // first-time seed one item for demo
-    localStorage.setItem(LS_CART_KEY, JSON.stringify([demoItem]));
-    return [demoItem];
+    // Return empty cart instead of demo item
+    return [];
   }
   try { return JSON.parse(raw) || []; } catch { return []; }
 }
@@ -265,13 +269,13 @@ function calcTotals() {
 
 function addToCart(prod) {
   const cart = loadCart();
-  const found = cart.find(i => i.id === prod.id);
+  const found = cart.find(i => i.id === prod.id && i.model === prod.model);
   if (found) {
     found.qty = Number(found.qty) + Number(prod.qty);
-    showNotification(`Updated quantity for ${prod.name}`, 'info');
+    showNotification(`Updated quantity for ${prod.name} (${prod.model})`, 'info');
   } else {
-    cart.push({ ...prod, qty: prod.qty });
-    showNotification(`Added ${prod.name} to cart`, 'success');
+    cart.push({ ...prod, qty: Number(prod.qty) });
+    showNotification(`Added ${prod.name} (${prod.model}) to cart`, 'success');
   }
   saveCart(cart);
   renderCart();
@@ -479,6 +483,11 @@ $('#checkoutBtn').on('click', function () {
 ========================= */
 $(document).ready(function () {
   console.log('Cart page initialized');
+
+  // Check login access first - redirect if not logged in
+  if (!checkLoginAccess()) {
+    return; // Stop execution if user is not logged in
+  }
 
   // Initialize social plugins
   initSocialPlugins();

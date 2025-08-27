@@ -32,17 +32,39 @@
                     <div class="right">
                         <ul class="flexitem main-links">
                             <div class="flexitem second-links">
-                                <a href="../cart/cart.html" class="iscart">
+                                <a href="../cart/cart.html" class="iscart" id="cart-link">
                                     <i class="ri-shopping-cart-line"></i>
                                 </a>
-                                <!-- <a href="#">SignUp/LogIn</a> -->
-                                <a href="#">My Account</a>
+                                <a href="../profile/userprofile.html" id="profile-link">
+                                    <i class="ri-user-line"></i>
+                                </a>
                             </div>
                         </ul>
                     </div>
                 </div>
             </div>
         </header>
+
+        <!-- Login Required Modal -->
+        <div class="modal-overlay" id="loginModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Login Required</h3>
+                    <span class="modal-close" id="modalClose">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-icon">
+                        <img src="../img/avatar.png" alt="Login Icon" class="login-icon">
+                    </div>
+                    <p>You need to login to access this feature.</p>
+                    <p>Please login to continue or create a new account if you don't have one.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" id="modalCancel">Cancel</button>
+                    <button class="btn-primary" id="modalLogin">Login</button>
+                </div>
+            </div>
+        </div>
 
         <main class="container">
             <!-- Filter Section -->
