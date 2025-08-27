@@ -69,12 +69,33 @@ $(document).ready(function() {
         // Get users from localStorage
         const users = JSON.parse(localStorage.getItem('users') || '[]');
         
-        // Find matching user
+        // Add hardcoded admin account
+        const hardcodedAdmin = {
+            email: "admin@accesso.com",
+            password: "admin123",
+            firstName: "System",
+            lastName: "Admin"
+        };
+        
+        // Check if input matches admin account
+        if (email === hardcodedAdmin.email && password === hardcodedAdmin.password) {
+            const cookieDays = rememberMe ? 30 : 1;
+            setCookie('loggedInUser', hardcodedAdmin.email, cookieDays);
+            setCookie('userFullName', `${hardcodedAdmin.firstName} ${hardcodedAdmin.lastName}`, cookieDays);
+            
+            showAlert('Admin login successful! Redirecting...', 'success');
+            setTimeout(() => {
+                window.location.href = '../index.html'; // change if needed
+            }, 1500);
+            return;
+        }
+        
+        // Find matching user from localStorage
         const user = users.find(u => u.email === email && u.password === password);
         
         if (user) {
             // Successful login
-            const cookieDays = rememberMe ? 30 : 1; // 30 days if remember me, 1 day otherwise
+            const cookieDays = rememberMe ? 30 : 1;
             setCookie('loggedInUser', user.email, cookieDays);
             setCookie('userFullName', `${user.firstName} ${user.lastName}`, cookieDays);
             
@@ -85,10 +106,8 @@ $(document).ready(function() {
             localStorage.setItem('users', JSON.stringify(users));
             
             showAlert('Login successful! Redirecting...', 'success');
-            
             setTimeout(() => {
-                // Redirect to home page or dashboard
-                window.location.href = '../index.html'; // Change to your main page
+                window.location.href = '../index.html';
             }, 1500);
             
         } else {
