@@ -27,10 +27,10 @@
 
     <div class="top-right">
       <img src="img/brightness.png" alt="Theme Toggle" class="theme-toggle" id="themeToggle">
-      <a href="cart/cart.html">
+      <a href="cart/cart.html" id="cart-link">
         <img src="img/cart.png" alt="Cart" class="cart-icon" title="Cart">
       </a>
-      <a href="profile/userprofile.html">
+      <a href="profile/userprofile.html" id="profile-link">
         <img src="img/avatar.png" alt="Profile Avatar" class="avatar" title="Profile">
       </a>
       <div class="hamburger" id="hamburger">
@@ -47,6 +47,27 @@
     </div>
     </div>
   </header>
+
+  <!-- Login Required Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Login Required</h3>
+        <span class="modal-close" id="modalClose">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-icon">
+          <img src="img/avatar.png" alt="Login Icon" class="login-icon">
+        </div>
+        <p>You need to login to access this feature.</p>
+        <p>Please login to continue or create a new account if you don't have one.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="modalCancel">Cancel</button>
+        <button class="btn-primary" id="modalLogin">Login</button>
+      </div>
+    </div>
+  </div>
 
   <div class="hero-banner">
     <h1>Welcome to Acceso</h1>

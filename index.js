@@ -1,3 +1,33 @@
+// Cookie functions
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+// Check if user is logged in
+function isLoggedIn() {
+    return getCookie('loggedInUser') !== null;
+}
+
+// Modal functions
+function showLoginModal() {
+    const modal = document.getElementById('loginModal');
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function hideLoginModal() {
+    const modal = document.getElementById('loginModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = 'auto'; // Restore scrolling
+}
+
 // Theme Toggle with sessionStorage
 const themeToggle = document.getElementById('themeToggle');
 if (sessionStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
@@ -5,6 +35,58 @@ if (sessionStorage.getItem('theme') === 'dark') document.body.classList.add('dar
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark');
     sessionStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+});
+
+// Cart and Profile link handlers
+document.addEventListener('DOMContentLoaded', function() {
+    const cartLink = document.getElementById('cart-link');
+    const profileLink = document.getElementById('profile-link');
+    const modal = document.getElementById('loginModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalCancel = document.getElementById('modalCancel');
+    const modalLogin = document.getElementById('modalLogin');
+
+    // Cart link click handler
+    cartLink.addEventListener('click', function(e) {
+        if (!isLoggedIn()) {
+            e.preventDefault(); // Prevent navigation
+            showLoginModal();
+        }
+        // If logged in, allow normal navigation to cart/cart.html
+    });
+
+    // Profile link click handler
+    profileLink.addEventListener('click', function(e) {
+        if (!isLoggedIn()) {
+            e.preventDefault(); // Prevent navigation
+            showLoginModal();
+        }
+        // If logged in, allow normal navigation to profile/userprofile.html
+    });
+
+    // Modal close handlers
+    modalClose.addEventListener('click', hideLoginModal);
+    modalCancel.addEventListener('click', hideLoginModal);
+
+    // Login button handler
+    modalLogin.addEventListener('click', function() {
+        // Redirect to login page
+        window.location.href = 'login/login.html';
+    });
+
+    // Close modal when clicking outside of it
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            hideLoginModal();
+        }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            hideLoginModal();
+        }
+    });
 });
 
 // Bubble rotation
@@ -61,7 +143,9 @@ hamburger.addEventListener('click', () => {
 // Mobile submenu toggle
 const mobileExpandable = mobileMenu.querySelector('.expandable a');
 const mobileExpandableParent = mobileMenu.querySelector('.expandable');
-mobileExpandable.addEventListener('click', (e) => {
-    e.preventDefault();
-    mobileExpandableParent.classList.toggle('active');
-});
+if (mobileExpandable && mobileExpandableParent) {
+    mobileExpandable.addEventListener('click', (e) => {
+        e.preventDefault();
+        mobileExpandableParent.classList.toggle('active');
+    });
+}

@@ -1,65 +1,101 @@
-$(document).ready(function () {
-    if (sessionStorage.getItem('theme') === 'dark') {
-        $("body").addClass("dark-mode");
-        $("#theme-toggle").prop("checked", true);
+$(document).ready(function() {
+    // Theme toggle functionality
+    const themeToggle = $('#theme-toggle');
+    const body = $('body');
+    
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        body.addClass('dark');
     }
-    $("#theme-toggle").on("change", function () {
-        $("body").toggleClass("dark-mode");
-        if ($("body").hasClass("dark-mode")) {
-            sessionStorage.setItem("theme", "dark");
-        } else {
-            sessionStorage.setItem("theme", "light");
+    
+    themeToggle.on('click', function() {
+        body.toggleClass('dark');
+        const isDark = body.hasClass('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+    
+    // Cookie functions
+    function setCookie(name, value, days) {
+        const expires = new Date();
+        expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+    }
+    
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
         }
-    });
-
-    $("#close-btn").on("click", function () {
-        window.history.back();
-    });
-
-    // Hash password
-    async function hashPassword(password) {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(password);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        return null;
     }
-
-    $("#loginForm").on("submit", async function (e) {
+    
+    // Show alert function
+    function showAlert(message, type = 'danger') {
+        const alert = $('#login-alert');
+        alert.removeClass('alert-danger alert-success').addClass(`alert-${type}`);
+        $('#alert-message').text(message);
+        alert.removeClass('d-none');
+        
+        setTimeout(() => {
+            alert.addClass('d-none');
+        }, 5000);
+    }
+    
+    // Check if user is already logged in
+    const loggedInUser = getCookie('loggedInUser');
+    if (loggedInUser) {
+        showAlert(`Already logged in as ${loggedInUser}`, 'success');
+        // Optionally redirect to dashboard or home page
+        // window.location.href = 'dashboard.html';
+    }
+    
+    // Login form submission
+    $('#login-form').on('submit', function(e) {
         e.preventDefault();
-        let email = $("#email").val().trim();
-        let password = $("#password").val().trim();
-        let valid = true;
-
-        $(".error-msg").hide();
-
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email)) {
-            $("#email-error").show();
-            valid = false;
+        
+        const email = $('#email').val().trim();
+        const password = $('#password').val().trim();
+        const rememberMe = $('#remember-me').is(':checked');
+        
+        if (!email || !password) {
+            showAlert('Please fill in all fields');
+            return;
         }
-        if (!password) {
-            $("#password-error").show();
-            valid = false;
-        }
-        if (!valid) return;
-
-        // Read stored users from local storage
-        let users = JSON.parse(localStorage.getItem("users")) || [];
-
-        // Hash input password
-        const hashedPassword = await hashPassword(password);
-
-        // Find user
-        const user = users.find(u => u.email === email && u.password === hashedPassword);
-
+        
+        // Get users from localStorage
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        
+        // Find matching user
+        const user = users.find(u => u.email === email && u.password === password);
+        
         if (user) {
-            // Save session info
-            sessionStorage.setItem("loggedInUser", JSON.stringify({ email: user.email }));
-            alert("Login successful!");
-            window.location.href = "../index.html";
+            // Successful login
+            const cookieDays = rememberMe ? 30 : 1; // 30 days if remember me, 1 day otherwise
+            setCookie('loggedInUser', user.email, cookieDays);
+            setCookie('userFullName', `${user.firstName} ${user.lastName}`, cookieDays);
+            
+            // Update last login
+            user.lastLogin = new Date().toISOString();
+            const userIndex = users.findIndex(u => u.email === email);
+            users[userIndex] = user;
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            showAlert('Login successful! Redirecting...', 'success');
+            
+            setTimeout(() => {
+                // Redirect to home page or dashboard
+                window.location.href = '../index.html'; // Change to your main page
+            }, 1500);
+            
         } else {
-            alert("Invalid email or password. Please try again.");
+            showAlert('Invalid email or password');
         }
     });
+    
+    // Auto-focus on first input
+    $('#email').focus();
 });

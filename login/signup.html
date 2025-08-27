@@ -1,53 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Phone Accessories Store</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="signup.css">
+    <title>Sign Up - Accesso</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="signup.css" rel="stylesheet">
 </head>
-
 <body>
-    <div class="signup-container" id="signup-box">
-        <label class="switch">
-            <input type="checkbox" id="theme-toggle">
-            <span class="slider round"></span>
-            <span class="ms-1">Dark Mode</span>
-        </label>
+    <header>
+        <a href="../index.html" class="logo-title">
+            <img src="../img/logo.png" alt="Acceso Logo" class="logo">
+            <h3 style="margin: 0;">Accesso</h3>
+        </a>
+        <img src="../img/brightness.png" alt="Theme Toggle" class="theme-toggle" id="theme-toggle">
+    </header>
 
-        <span class="close-btn" id="close-btn">&times;</span>
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2 class="auth-title">Create Account</h2>
+            
+            <div id="signup-alert" class="alert alert-danger d-none" role="alert">
+                <span id="alert-message"></span>
+            </div>
 
-        <div class="signup-header">
-            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control" id="first-name" placeholder="First Name" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control" id="last-name" placeholder="Last Name" required>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="email" placeholder="Email address" required>
+                </div>
+                
+                <div class="mb-3">
+                    <input type="tel" class="form-control" id="phone" placeholder="Phone number (optional)">
+                </div>
+                
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="password" placeholder="Password" required>
+                    <div class="password-strength">
+                        <div class="password-strength-bar" id="password-strength-bar"></div>
+                    </div>
+                    <div class="password-requirements">
+                        <div class="requirement" id="length-req">
+                            <div class="check"></div>
+                            <span>At least 8 characters</span>
+                        </div>
+                        <div class="requirement" id="uppercase-req">
+                            <div class="check"></div>
+                            <span>One uppercase letter</span>
+                        </div>
+                        <div class="requirement" id="lowercase-req">
+                            <div class="check"></div>
+                            <span>One lowercase letter</span>
+                        </div>
+                        <div class="requirement" id="number-req">
+                            <div class="check"></div>
+                            <span>One number</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password" required>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="terms" required>
+                        <label class="form-check-label" for="terms">
+                            I agree to the <a href="#" class="auth-link">Terms of Service</a> and <a href="#" class="auth-link">Privacy Policy</a>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="newsletter">
+                        <label class="form-check-label" for="newsletter">
+                            Subscribe to newsletter for updates and promotions
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-100 mb-3">Create Account</button>
+            </form>
+            
+            <div class="text-center">
+                <span>Already have an account? </span>
+                <a href="login.html" class="auth-link">Sign in here</a>
+            </div>
         </div>
-
-        <form id="signupForm" novalidate>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
-                <div id="email-error" class="text-danger small mt-1" style="display:none;"></div>
-            </div>
-
-            <div class="mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
-                <div id="password-error" class="text-danger small mt-1" style="display:none;"></div>
-            </div>
-
-            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
-        </form>
-
-        <p class="text-center mt-3">
-            Already have an account? <a href="login.html">Login here</a>
-        </p>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="signup.js"></script>
 </body>
-
 </html>

@@ -1,53 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Phone Accessories Store</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="login.css">
-
+    <title>Login - Accesso</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="login.css" rel="stylesheet">
 </head>
-
 <body>
-    <div class="login-container" id="login-box">
-        <label class="switch">
-            <input type="checkbox" id="theme-toggle">
-            <span class="slider round"></span>
-            <span class="ms-1">Dark Mode</span>
-        </label>
+    <header>
+        <a href="../index.html" class="logo-title">
+            <img src="../img/logo.png" alt="Acceso Logo" class="logo">
+            <h3 style="margin: 0;">Accesso</h3>
+        </a>
+        <img src="../img/brightness.png" alt="Theme Toggle" class="theme-toggle" id="theme-toggle">
+    </header>
 
-        <span class="close-btn" id="close-btn">&times;</span>
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2 class="auth-title">Welcome Back</h2>
+            
+            <div id="login-alert" class="alert alert-danger d-none" role="alert">
+                <span id="alert-message"></span>
+            </div>
 
-        <div class="text-center mb-3">
-            <h2>Login</h2>
+            <form id="login-form">
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="email" placeholder="Email address" required>
+                </div>
+                
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="password" placeholder="Password" required>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="remember-me">
+                        <label class="form-check-label" for="remember-me">
+                            Remember me
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-100 mb-3">Sign In</button>
+            </form>
+            
+            <div class="text-center">
+                <span>Don't have an account? </span>
+                <a href="signup.html" class="auth-link">Sign up here</a>
+            </div>
         </div>
-
-        <form id="loginForm" novalidate>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email:</label>
-                <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
-                <div class="error-msg" id="email-error">Please enter a valid email address.</div>
-            </div>
-
-            <div class="mb-3">
-                <label for="password" class="form-label">Password:</label>
-                <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
-                <div class="error-msg" id="password-error">Password cannot be empty.</div>
-            </div>
-
-            <button type="submit" class="btn btn-primary w-100">Login</button>
-        </form>
-
-        <p class="text-center mt-3">
-            Don’t have an account? <a href="signup.html">Sign up here</a>
-        </p>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="login.js"></script>
 </body>
 </html>

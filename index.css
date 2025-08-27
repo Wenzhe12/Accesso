@@ -1,4 +1,4 @@
- :root {
+:root {
      --soft-gray: #f7f7f8;
      --ink: #333;
      --muted: #6c757d;
@@ -33,6 +33,12 @@
      left: 0;
      right: 0;
      z-index: 3000;
+     transition: background 0.3s, color 0.3s;
+ }
+
+ body.dark header {
+     background: #1e1e1e;
+     color: #eee;
  }
 
  .logo-title {
@@ -58,6 +64,11 @@
      text-decoration: none;
      color: #333;
      font-weight: bold;
+     transition: color 0.3s;
+ }
+
+ body.dark nav a {
+     color: #eee;
  }
 
  .expandable {
@@ -181,11 +192,188 @@
      display: flex;
  }
 
+ /* Modal Styles */
+ .modal-overlay {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: rgba(0, 0, 0, 0.5);
+     display: none;
+     align-items: center;
+     justify-content: center;
+     z-index: 4000;
+     backdrop-filter: blur(5px);
+     opacity: 0;
+     transition: opacity 0.3s ease;
+ }
+
+ .modal-overlay.show {
+     display: flex;
+     opacity: 1;
+ }
+
+ body.dark .modal-overlay {
+     background: rgba(0, 0, 0, 0.7);
+ }
+
+ .modal-content {
+     background: white;
+     border-radius: 12px;
+     max-width: 400px;
+     width: 90%;
+     max-height: 80vh;
+     overflow-y: auto;
+     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+     transform: scale(0.7);
+     transition: transform 0.3s ease;
+ }
+
+ .modal-overlay.show .modal-content {
+     transform: scale(1);
+ }
+
+ body.dark .modal-content {
+     background: #1e1e1e;
+     color: #eee;
+     box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+ }
+
+ .modal-header {
+     padding: 20px 24px 16px;
+     border-bottom: 1px solid #eee;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ body.dark .modal-header {
+     border-bottom-color: #333;
+ }
+
+ .modal-header h3 {
+     margin: 0;
+     font-size: 20px;
+     font-weight: 600;
+     color: var(--brand);
+ }
+
+ .modal-close {
+     cursor: pointer;
+     font-size: 24px;
+     color: #666;
+     width: 30px;
+     height: 30px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border-radius: 50%;
+     transition: all 0.3s;
+ }
+
+ .modal-close:hover {
+     background: #f0f0f0;
+     color: #333;
+ }
+
+ body.dark .modal-close {
+     color: #ccc;
+ }
+
+ body.dark .modal-close:hover {
+     background: #333;
+     color: #eee;
+ }
+
+ .modal-body {
+     padding: 24px;
+     text-align: center;
+ }
+
+ .modal-icon {
+     margin-bottom: 16px;
+ }
+
+ .login-icon {
+     width: 60px;
+     height: 60px;
+     border-radius: 50%;
+     opacity: 0.8;
+ }
+
+ .modal-body p {
+     margin: 12px 0;
+     color: #666;
+     line-height: 1.5;
+ }
+
+ body.dark .modal-body p {
+     color: #ccc;
+ }
+
+ .modal-footer {
+     padding: 16px 24px 24px;
+     display: flex;
+     gap: 12px;
+     justify-content: flex-end;
+ }
+
+ .btn-primary,
+ .btn-secondary {
+     padding: 10px 20px;
+     border: none;
+     border-radius: 8px;
+     font-weight: 500;
+     cursor: pointer;
+     font-size: 14px;
+     transition: all 0.3s;
+     font-family: "Montserrat", sans-serif;
+ }
+
+ .btn-primary {
+     background: var(--brand);
+     color: var(--text-dark);
+     min-width: 80px;
+ }
+
+ .btn-primary:hover {
+     background: var(--hero-bg);
+     transform: translateY(-1px);
+ }
+
+ .btn-secondary {
+     background: #f8f9fa;
+     color: #666;
+     border: 1px solid #ddd;
+ }
+
+ .btn-secondary:hover {
+     background: #e9ecef;
+     border-color: #adb5bd;
+ }
+
+ body.dark .btn-secondary {
+     background: #333;
+     color: #ccc;
+     border-color: #555;
+ }
+
+ body.dark .btn-secondary:hover {
+     background: #444;
+     border-color: #666;
+ }
+
  .hero-banner {
      text-align: center;
      background-color: #b6ad9d;
      color: #fff;
      padding: 120px 20px 60px;
+     transition: background 0.3s;
+ }
+
+ body.dark .hero-banner {
+     background-color: #2a2a2a;
  }
 
  .hero-banner h1 {
@@ -301,6 +489,7 @@
      padding: 24px;
  }
 
+ /* Responsive Design */
  @media(max-width:768px) {
      nav {
          display: none;
@@ -308,5 +497,19 @@
 
      .hamburger {
          display: flex;
+     }
+
+     .modal-content {
+         width: 95%;
+         margin: 20px;
+     }
+
+     .modal-footer {
+         flex-direction: column;
+     }
+
+     .btn-primary,
+     .btn-secondary {
+         width: 100%;
      }
  }

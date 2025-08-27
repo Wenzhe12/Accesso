@@ -23,7 +23,7 @@ const products = {
     "Bobo": {
         name: "Big Bobo",
         price: "RM 200.00",
-        img: "../img/BigBobo.png",
+        img: "../img/Bigbobo.png",
         description: "A large huggable plush with a charming smile that makes the best cuddle buddy."
     },
     "NiceDay": {
