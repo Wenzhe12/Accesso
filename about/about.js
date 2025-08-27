@@ -4,11 +4,15 @@ const productToggle = document.getElementById('product-toggle');
 const expandable = productToggle.parentElement;
 const themeToggle = document.getElementById('theme-toggle');
 
-// consistent theme
 if (sessionStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark');
     themeToggle.checked = true;
 }
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    sessionStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+});
 
 themeToggle.addEventListener('change', () => {
     document.body.classList.toggle('dark');
