@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile - Acceso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="userprofile.css" rel="stylesheet" />
+
+</head>
+
+<body>
+  <header>
+    <a href="../index.html" class="logo-title">
+      <img src="../img/icon.png" alt="Acceso Logo" class="logo" />
+    </a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <div class="expandable">
+        <a href="../product/product.html">Products</a>
+      </div>
+      <a href="../about/about.html">About Us</a>
+    </nav>
+    <div class="top-right">
+      <img src="../img/brightness.png" alt="Theme Toggle" class="theme-toggle" id="themeToggle" />
+      <a href="../cart/cart.html">
+        <img src="../img/cart.png" alt="Cart" class="cart-icon" title="Cart" />
+      </a>
+      <a href="userprofile.html">
+        <img src="../img/avatar.png" alt="Profile Avatar" class="avatar" title="Profile" />
+      </a>
+      <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="profile-card">
+      <div class="profile-sidebar">
+        <a href="userprofile.html"><button class="active">User Profile</button></a>
+        <a href="editprofile.html"><button>Edit Profile</button></a>
+        <a href="updatepassword.html"><button>Update Password</button></a>
+        <a href="orderhistory.html"><button>Order History</button></a>
+        <button id="signOutBtn" style="background-color:#dc2626;color:white;">Sign Out</button>
+      </div>
+
+      <div class="profile-content">
+        <div class="profile-header">
+          <img src="../img/xavier.png" alt="User Image" id="userImage" />
+          <h1>User Profile</h1>
+        </div>
+        <div class="profile-info">
+          <div class="info-block">
+            <p class="info-label">Full Name</p>
+            <p class="info-value" id="displayFullName">Not set</p>
+          </div>
+          <div class="info-block">
+            <p class="info-label">Email Address</p>
+            <p class="info-value" id="displayEmail">Not set</p>
+          </div>
+          <div class="info-block">
+            <p class="info-label">Phone Number</p>
+            <p class="info-value" id="displayPhone">Not set</p>
+          </div>
+          <div class="info-block">
+            <p class="info-label">Home Address</p>
+            <p class="info-value" id="displayAddress">Not set</p>
+          </div>
+          <div class="info-block">
+            <p class="info-label">Gender</p>
+            <p class="info-value" id="displayGender">Not set</p>
+          </div>
+          <div class="info-block">
+            <p class="info-label">Date of Birth</p>
+            <p class="info-value" id="displayDOB">Not set</p>
+          </div>
+          <div class="info-block">
+            <p class="info-label">Account Role</p>
+            <p class="info-value" id="displayRole">Premium User</p>
+          </div>
+          <div class="info-block">
+            <p class="info-label">Join Date</p>
+            <p class="info-value" id="displayJoinDate">January 2023</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="userprofile.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edit Profile - Acceso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="editprofile.css" rel="stylesheet" />
+</head>
+
+<body>
+  <header>
+    <a href="../index.html" class="logo-title">
+      <img src="../img/icon.png" alt="Acceso Logo" class="logo" />
+    </a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <div class="expandable">
+        <a href="../product/product.html">Products</a>
+      </div>
+      <a href="../about/about.html">About Us</a>
+    </nav>
+    <div class="top-right">
+      <img src="../img/brightness.png" alt="Theme Toggle" class="theme-toggle" id="themeToggle" />
+      <a href="../cart/cart.html">
+        <img src="../img/cart.png" alt="Cart" class="cart-icon" title="Cart" />
+      </a>
+      <a href="userprofile.html">
+        <img src="../img/avatar.png" alt="Profile Avatar" class="avatar" title="Profile" />
+      </a>
+      <div class="hamburger" id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="profile-card">
+      <div class="profile-sidebar">
+        <a href="userprofile.html"><button>User Profile</button></a>
+        <a href="editprofile.html"><button class="active">Edit Profile</button></a>
+        <a href="updatepassword.html"><button>Update Password</button></a>
+        <a href="orderhistory.html"><button>Order History</button></a>
+        <button id="signOutBtn" style="background-color:#dc2626; color:white;">Sign Out</button>
+      </div>
+
+      <div class="profile-content">
+        <h1>Edit Profile</h1>
+        <form id="editProfileForm">
+          <label>Profile Picture</label>
+          <input type="file" id="profilePic" accept="image/*">
+          <img id="previewPic" src="../img/xavier.png" alt="Profile Preview">
+
+          <label>Full Name</label>
+          <input type="text" id="fullName" required>
+
+          <label>Email</label>
+          <input type="email" id="email" required>
+
+          <label>Phone Number</label>
+          <input type="text" id="phone">
+
+          <label>Gender</label>
+          <select id="gender">
+            <option value="">-- Select Gender --</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <label>Home Address</label>
+          <textarea id="address" rows="3"></textarea>
+
+          <label>Date of Birth</label>
+          <input type="date" id="dob">
+
+          <button type="submit">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <script src="editprofile.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,213 @@
+ body {
+     font-family: "Montserrat", sans-serif;
+     margin: 0;
+     padding: 0;
+     background: #fff;
+     color: #333;
+     transition: background 0.3s, color 0.3s;
+ }
+
+ body.dark {
+     background: #121212;
+     color: #eee;
+ }
+
+ header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 10px 20px;
+     background: #CFC1AB;
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     z-index: 3000;
+     min-height: 60px;
+     box-sizing: border-box;
+ }
+
+ .logo-title {
+     display: flex;
+     align-items: center;
+     text-decoration: none;
+     color: inherit;
+ }
+
+ .logo {
+     height: 60px;
+     max-height: 100%;
+     width: 40px;
+     object-fit: contain;
+ }
+
+ nav {
+     display: flex;
+     gap: 20px;
+ }
+
+ nav a {
+     text-decoration: none;
+     color: #333;
+     font-weight: bold;
+ }
+
+ body.dark nav a {
+     color: #eee;
+ }
+
+ .top-right {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+     height: 50px;
+ }
+
+ .top-right img {
+     cursor: pointer;
+ }
+
+ .theme-toggle,
+ .avatar,
+ .cart-icon {
+     width: 24px;
+     height: 24px;
+ }
+
+ main {
+     max-width: 1000px;
+     margin: 120px auto 40px;
+     padding: 0 20px;
+ }
+
+ .profile-card {
+     background: #fff;
+     border-radius: 12px;
+     padding: 30px;
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+     display: flex;
+     gap: 40px;
+     transition: background 0.3s, color 0.3s;
+ }
+
+ body.dark .profile-card {
+     background: #1e1e1e;
+     color: #eee;
+     box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+ }
+
+ .profile-sidebar {
+     display: flex;
+     flex-direction: column;
+     min-width: 160px;
+     border-right: 1px solid #ccc;
+     padding-right: 20px;
+ }
+
+ body.dark .profile-sidebar {
+     border-color: #444;
+ }
+
+ .profile-sidebar button {
+     background: none;
+     border: none;
+     text-align: left;
+     padding: 10px 5px;
+     margin-bottom: 10px;
+     font-weight: 600;
+     color: #333;
+     cursor: pointer;
+     border-radius: 5px;
+     transition: 0.3s;
+     font-size: 14px;
+ }
+
+ body.dark .profile-sidebar button {
+     color: #eee;
+ }
+
+ .profile-sidebar button:hover,
+ .profile-sidebar button.active {
+     background-color: #CFC1AB;
+     color: #000;
+ }
+
+ .profile-content {
+     flex-grow: 1;
+ }
+
+ form label {
+     display: block;
+     font-weight: 600;
+     margin-bottom: 8px;
+     font-size: 14px;
+ }
+
+ form input,
+ form select,
+ form textarea {
+     width: 100%;
+     padding: 10px;
+     margin-bottom: 20px;
+     border: 1px solid #ccc;
+     border-radius: 6px;
+     font-size: 14px;
+     background: #fff;
+     color: #333;
+     transition: 0.3s;
+ }
+
+ body.dark form input,
+ body.dark form select,
+ body.dark form textarea {
+     background: #333;
+     border-color: #555;
+     color: #eee;
+ }
+
+ form button {
+     background-color: #CFC1AB;
+     border: none;
+     padding: 12px 20px;
+     font-weight: 700;
+     border-radius: 8px;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+     color: #000;
+     font-size: 16px;
+ }
+
+ form button:hover {
+     background-color: #b3a78f;
+ }
+
+ #previewPic {
+     width: 120px;
+     height: 120px;
+     border-radius: 50%;
+     object-fit: cover;
+     margin-bottom: 20px;
+     border: 3px solid #CFC1AB;
+ }
+
+ @media (max-width: 768px) {
+     .profile-card {
+         flex-direction: column;
+     }
+
+     .profile-sidebar {
+         flex-direction: row;
+         border-right: none;
+         border-bottom: 1px solid #ccc;
+         padding-bottom: 15px;
+         margin-bottom: 20px;
+         overflow-x: auto;
+     }
+
+     .profile-sidebar button {
+         flex: 1 0 auto;
+         margin-right: 10px;
+         margin-bottom: 0;
+         font-size: 13px;
+     }
+ }
