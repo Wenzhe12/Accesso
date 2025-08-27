@@ -36,10 +36,10 @@
      transition: background 0.3s, color 0.3s;
  }
 
- body.dark header {
+ /* body.dark header {
      background: #1e1e1e;
      color: #eee;
- }
+ } */
 
  .logo-title {
      display: flex;
@@ -372,9 +372,9 @@
      transition: background 0.3s;
  }
 
- body.dark .hero-banner {
+ /* body.dark .hero-banner {
      background-color: #2a2a2a;
- }
+ } */
 
  .hero-banner h1 {
      font-size: 36px;
