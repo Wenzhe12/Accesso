@@ -6,6 +6,9 @@
   --fw3: 400;
   --fw6: 600;
   --trans-color: 0.3s ease-in-out;
+  --muted: #6c757d;
+  --brand: #CFC1AB;
+  --hero-bg: #b6ad9d;
 }
 
 * {
@@ -216,6 +219,27 @@ ul {
   margin-bottom: 20px;
   text-align: center;
   color: #666;
+}
+
+footer {
+  flex-shrink: 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100%;
+  background-color: var(--brand);
+  color: var(--text-dark);
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark footer {
+  background-color: #1e1e1e;
+  color: #eee;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
 }
 
 @media (max-width: 768px) {
