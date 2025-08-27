@@ -314,9 +314,4 @@ $(document).ready(function () {
     };
     sessionStorage.setItem('checkoutFormData', JSON.stringify(formData));
   });
-
-  //   console.log('Storage usage:');
-  //   console.log('- localStorage: Order history, cart data');
-  //   console.log('- sessionStorage: Checkout preview, form data, payment preferences');
-  //   console.log('- cookies: Payment method preferences');
 });

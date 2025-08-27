@@ -82,7 +82,9 @@ $(document).ready(function() {
             const cookieDays = rememberMe ? 30 : 1;
             setCookie('loggedInUser', hardcodedAdmin.email, cookieDays);
             setCookie('userFullName', `${hardcodedAdmin.firstName} ${hardcodedAdmin.lastName}`, cookieDays);
-            
+            localStorage.setItem('loggedInUser', hardcodedAdmin.email);
+            localStorage.setItem('userFullName', `${hardcodedAdmin.firstName} ${hardcodedAdmin.lastName}`);
+
             showAlert('Admin login successful! Redirecting...', 'success');
             setTimeout(() => {
                 window.location.href = '../index.html'; // change if needed
@@ -98,6 +100,9 @@ $(document).ready(function() {
             const cookieDays = rememberMe ? 30 : 1;
             setCookie('loggedInUser', user.email, cookieDays);
             setCookie('userFullName', `${user.firstName} ${user.lastName}`, cookieDays);
+            localStorage.setItem('loggedInUser', user.email);
+            localStorage.setItem('userFullName', `${user.firstName} ${user.lastName}`);
+
             
             // Update last login
             user.lastLogin = new Date().toISOString();

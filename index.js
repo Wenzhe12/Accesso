@@ -12,7 +12,7 @@ function getCookie(name) {
 
 // Check if user is logged in
 function isLoggedIn() {
-    return getCookie('loggedInUser') !== null;
+    return getCookie('loggedInUser') !== null || localStorage.getItem('loggedInUser') !== null;
 }
 
 // Modal functions
