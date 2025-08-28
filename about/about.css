@@ -335,6 +335,14 @@ body.dark footer {
 /*responsive layout*/
 @media (max-width: 768px) {
 
+   #theme-toggle-desktop {
+        display: none;
+    }
+
+    #theme-toggle {
+        display: inline-block;
+    }
+
     .about-container,
     .contact-container {
         flex-direction: column;
