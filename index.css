@@ -1,3 +1,4 @@
+/* root variables & colours */
 :root {
      --soft-gray: #f7f7f8;
      --ink: #333;
@@ -7,6 +8,7 @@
      --text-dark: #453125;
  }
 
+ /* global & body styles */
  body {
      font-family: "Montserrat", sans-serif;
      margin: 0;
@@ -17,11 +19,13 @@
      transition: background 0.3s, color 0.3s;
  }
 
+ /*dark mode global & body styles*/
  body.dark {
      background: #121212;
      color: #eee;
  }
 
+ /*header*/
  header {
      display: flex;
      justify-content: space-between;
@@ -36,30 +40,21 @@
      transition: background 0.3s, color 0.3s;
  }
 
- /* body.dark header {
-     background: #1e1e1e;
-     color: #eee;
- } */
-
- .logo-title {
-     display: flex;
-     align-items: center;
-     text-decoration: none;
-     color: inherit;
- }
-
+ /*logo size*/
  .logo {
      height: 50px;
      object-fit: contain;
      margin-right: 10px;
  }
 
+ /*navigation bar*/
  nav {
      display: flex;
      align-items: center;
      gap: 20px;
  }
 
+ /*navigation bar text*/
  nav a {
      text-decoration: none;
      color: #333;
@@ -67,45 +62,7 @@
      transition: color 0.3s;
  }
 
- body.dark nav a {
-     color: #eee;
- }
-
- .expandable {
-     position: relative;
- }
-
- .submenu {
-     display: none;
-     position: absolute;
-     top: 100%;
-     left: 0;
-     background: #fff;
-     border-radius: 5px;
-     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-     flex-direction: column;
-     min-width: 150px;
- }
-
- body.dark .submenu {
-     background: #1e1e1e;
- }
-
- .submenu a {
-     padding: 8px 12px;
-     display: block;
-     color: #333;
-     text-decoration: none;
- }
-
- body.dark .submenu a {
-     color: #eee;
- }
-
- .expandable:hover .submenu {
-     display: flex;
- }
-
+ /*navigation bar icon*/
  .top-right {
      display: flex;
      align-items: center;
@@ -129,6 +86,7 @@
      height: 24px;
  }
 
+ /*hamburger container*/
  .hamburger {
      display: none;
      flex-direction: column;
@@ -138,6 +96,7 @@
      cursor: pointer;
  }
 
+ /*hamburger icon*/
  .hamburger div {
      width: 100%;
      height: 3px;
@@ -146,10 +105,12 @@
      transition: all 0.3s;
  }
 
+ /*hamburger icon dark mode*/
  body.dark .hamburger div {
-     background: #eee;
+     background: #1e1e1e;
  }
 
+ /*hamburger menu*/
  .mobile-menu {
      display: none;
      flex-direction: column;
@@ -163,10 +124,12 @@
      z-index: 2000;
  }
 
+ /*hamburger menu dark mode*/
  body.dark .mobile-menu {
      background: #1e1e1e;
  }
 
+ /*hamburger menu text*/
  .mobile-menu a {
      padding: 10px 15px;
      text-decoration: none;
@@ -175,24 +138,13 @@
      border-bottom: 1px solid #ccc;
  }
 
+ /*hamburger menu dark mode text*/
  body.dark .mobile-menu a {
      color: #eee;
      border-bottom: 1px solid #444;
  }
 
- .mobile-menu .submenu {
-     position: static;
-     display: none;
-     flex-direction: column;
-     border: none;
-     box-shadow: none;
- }
-
- .mobile-menu .expandable.active .submenu {
-     display: flex;
- }
-
- /* Modal Styles */
+ /* Modal Styles - ask for login*/
  .modal-overlay {
      position: fixed;
      top: 0;
@@ -364,6 +316,7 @@
      border-color: #666;
  }
 
+ /*hero banner*/
  .hero-banner {
      text-align: center;
      background-color: #b6ad9d;
@@ -385,6 +338,7 @@
      font-size: 18px;
  }
 
+ /*main container*/
  .main-container {
      display: flex;
      justify-content: space-between;
@@ -395,10 +349,12 @@
      transition: background 0.3s;
  }
 
+ /*main container dark mode*/
  body.dark .main-container {
      background-color: #121212;
  }
 
+ /*section styles*/
  .section {
      background-color: #fff;
      padding: 20px;
@@ -410,17 +366,20 @@
      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
  }
 
+ /*section dark mode*/
  body.dark .section {
      background-color: #1e1e1e;
      color: #eee;
      box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
  }
 
+ /*section h2 style*/
  .section h2 {
      color: #CFC1AB;
      margin-bottom: 15px;
  }
 
+ /*image container*/
  .img-placeholder {
      width: 100%;
      border-radius: 10px;
@@ -429,6 +388,7 @@
      text-align: center;
  }
 
+ /*image inside image container*/
  .img-placeholder img {
      width: auto;
      height: 350px;
@@ -436,6 +396,7 @@
      border-radius: 10px;
  }
 
+ /*product description*/
  .product-desc {
      margin-top: 8px;
      font-size: 14px;
@@ -444,14 +405,17 @@
      transition: color 0.3s;
  }
 
+ /*product description dark mode*/
  body.dark .product-desc {
      color: #ddd;
  }
 
+ /*quick tips container*/
  #quick-tips {
      padding-top: 20px;
  }
 
+ /*bubble style*/
  .bubble {
      background-color: #CFC1AB;
      color: #453125;
@@ -463,11 +427,13 @@
      margin-bottom: 15px;
  }
 
+ /*bubble style dark mode*/
  body.dark .bubble {
      color: #fff;
      background-color: #333;
  }
 
+ /*footer style*/
  footer {
      flex-shrink: 0;
      margin-left: 0 !important;
@@ -478,18 +444,20 @@
      transition: background 0.3s, color 0.3s;
  }
 
+ /*footer style dark mode*/
  body.dark footer {
      background-color: #1e1e1e;
      color: #eee;
  }
 
+ /*footer text*/
  .footer-content {
      max-width: 1200px;
      margin: 0 auto;
      padding: 24px;
  }
 
- /* Responsive Design */
+ /*responsive layout*/
  @media(max-width:768px) {
      nav {
          display: none;
