@@ -235,3 +235,11 @@ document.getElementById('searchInput').addEventListener('keypress', function (e)
         searchProducts();
     }
 });
+
+const themeToggle = document.getElementById('themeToggle');
+if (sessionStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    sessionStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+});

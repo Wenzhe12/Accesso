@@ -21,7 +21,22 @@ body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
 }
-
+/*
+body.dark {
+     background: #121212;
+     color: #eee;
+ }
+*/
+body.dark {
+  /* Dark theme overrides */
+  --primary-color: #eee;
+  --secondary-color: #CFC1AB;
+  --background-color: #121212;
+  --card-background: #1e1e1e;
+  --text-color: #eee;
+  --muted-text: #aaa;
+  --border-color: #444;
+}
 .flexitem {
   display: flex;
   align-items: center;
@@ -44,6 +59,9 @@ ul {
   background: #CFC1AB;
   border-bottom: 1px solid #ddd;
   padding: 10px 20px;
+  /*
+  background: var(--secondary-color);
+  border-bottom: 1px solid var(--border-color);*/
 }
 
 .header-top .wrapper {
@@ -145,6 +163,8 @@ ul {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   transform: scale(0.7);
   transition: transform 0.3s ease;
+  /**/
+  background: var(--card-baclground);
 }
 
 .modal-overlay.show .modal-content {
@@ -193,17 +213,24 @@ ul {
   margin-bottom: 16px;
 }
 
-.login-icon {
+.login-icon  {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   opacity: 0.8;
 }
 
+.theme-toggle {
+  width: 20px;
+  height: 20px;
+}
+
 .modal-body p {
   margin: 12px 0;
   color: #666;
   line-height: 1.5;
+  /**/
+  color: var(--muted-text);
 }
 
 .modal-footer {
@@ -212,6 +239,23 @@ ul {
   gap: 12px;
   justify-content: flex-end;
 }
+
+ body.dark {
+     background: #121212;
+     color: #fff;
+ }
+
+ body.dark .product-card{
+  background: #fff;
+  color:#000;
+ }
+
+ body.dark .container{
+  background: #000;
+  color: #fff;
+ }
+
+
 
 .btn-primary,
 .btn-secondary {
@@ -251,6 +295,8 @@ ul {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background: #fff;
+
 }
 
 .filter-section {
@@ -293,6 +339,22 @@ ul {
   margin-bottom: 40px;
 }
 
+body.dark .filter-section{
+  background: #222;
+  color: #fff;
+}
+body.dark .filter-btn{
+  background: #333;
+  border-color: #555;
+  color: #fff;
+}
+
+body.dark .filter-btn.active {
+  background: var(--secondary-color);
+  color: #fff;
+  border-color: var(--secondary-color);
+}
+
 .section-title {
   text-align: center;
   font-size: 2rem;
@@ -317,6 +379,7 @@ ul {
   width: 100%;
   max-width: 300px;
   background: white;
+
 }
 
 .product-card:hover {
@@ -336,7 +399,7 @@ ul {
 .product-card h3 {
   font-size: 1.1rem;
   margin-bottom: 10px;
-  color: var(--primary-color);
+  
 }
 
 .product-price {
@@ -363,6 +426,7 @@ footer {
   background-color: var(--brand);
   color: var(--text-dark);
   transition: background 0.3s, color 0.3s;
+ 
 }
 
 body.dark footer {

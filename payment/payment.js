@@ -3,9 +3,7 @@ const SS_PREVIEW_KEY = 'orderPreview:v1';
 const LS_CART_KEY = 'cart:v1';
 const LS_HISTORY_KEY = 'orderHistory:v1';
 
-/* =========================
-   COOKIE UTILITIES
-========================= */
+// COOKIE UTILITIES
 function getCookie(name) {
   const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
   return match ? decodeURIComponent(match[2]) : null;
@@ -28,9 +26,7 @@ function checkLoginAccess() {
   return true;
 }
 
-/* =========================
-   NOTIFICATION SYSTEM
-========================= */
+// NOTIFICATION SYSTEM
 function showNotification(message, type = 'info', duration = 3000) {
   const alertClass = {
     success: 'alert-success',
@@ -313,5 +309,13 @@ $(document).ready(function () {
       phone: $('#phone').val()
     };
     sessionStorage.setItem('checkoutFormData', JSON.stringify(formData));
+  });
+  
+  const themeToggle = document.getElementById('themeToggle');
+  if (sessionStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    sessionStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
   });
 });
